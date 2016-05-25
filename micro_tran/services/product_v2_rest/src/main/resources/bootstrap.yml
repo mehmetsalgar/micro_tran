@@ -1,8 +1,8 @@
 spring:
   application:
-    name: product_service_rest_v1
+    name: product_service_rest_v2
   jmx:
-    default-domain: product_service_rest_v1
+    default-domain: product_service_rest_v2
   cloud:
     config:
       uri: ${vcap.services.${PREFIX:}configserver.credentials.uri:http://user:password@localhost:8888}

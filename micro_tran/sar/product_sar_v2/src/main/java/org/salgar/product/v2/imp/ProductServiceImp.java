@@ -19,7 +19,7 @@ public class ProductServiceImp implements ProductService {
 		result.setProductId(2);
 		result.setName("topProduct2");
 		result.setQuality("magnificient");
-		return new Product();
+		return result;
 	}
 
 	@Override

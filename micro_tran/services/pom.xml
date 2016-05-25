@@ -37,6 +37,7 @@
   
   <modules>
     <module>product_v1_rest</module>
+	<module>product_v2_rest</module>
   </modules>
 
   <dependencies>
