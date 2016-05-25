@@ -1,0 +1,13 @@
+server:
+  port: 8761
+security:
+  user:
+    password: ${eureka.password} # Don't use a default password in a real app
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+  password: ${SECURITY_USER_PASSWORD:password}
