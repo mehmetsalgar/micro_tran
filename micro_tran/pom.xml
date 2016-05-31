@@ -45,11 +45,13 @@
   
   <modules>
 	<module>sar-utility</module>
+	<module>healthcheck</module>
 	<module>api</module>
     <module>sar</module>
 	<module>services</module>
 	<module>processes</module>
 	<module>support</module>
+    
   </modules>
 
   <dependencies>

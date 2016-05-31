@@ -29,21 +29,18 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 			</plugin>
-			<!-- plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin-->
+			<!-- plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+				<executions> <execution> <goals> <goal>repackage</goal> </goals> </execution> 
+				</executions> </plugin -->
 		</plugins>
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.salgar</groupId>
+			<artifactId>health-check</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>product_api_v1</artifactId>

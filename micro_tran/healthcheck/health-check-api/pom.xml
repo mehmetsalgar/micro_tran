@@ -4,20 +4,16 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.salgar</groupId>
-    <artifactId>api</artifactId>
+    <artifactId>healthcheck</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>product_api_v2</artifactId>
-  <name>product_api_v2</name>
+  <artifactId>health-check-api</artifactId>
 
+  <name>health-check-api</name>
+ 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-  	<dependency>
-			<groupId>org.salgar</groupId>
-			<artifactId>health-check-api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
   </dependencies>
 </project>
