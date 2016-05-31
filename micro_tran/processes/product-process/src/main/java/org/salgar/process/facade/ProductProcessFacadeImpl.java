@@ -35,8 +35,8 @@ public class ProductProcessFacadeImpl implements ProductProcessFacade {
 		
 	@HystrixCommand(fallbackMethod = "executeFallBackV1",
 			commandProperties = {@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
-					@HystrixProperty(name="circuitBreaker.requestVolumeThreshold", value="3"),
-					@HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value="36000000")})
+					@HystrixProperty(name="circuitBreaker.requestVolumeThreshold", value="1"),
+					@HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value="10000")})
 	public org.salgar.product.api.v1.model.Product getProductV1(int productId) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.product.api.v1.model.Product result = productServiceV1.giveProduct(productId);
 		
@@ -45,8 +45,8 @@ public class ProductProcessFacadeImpl implements ProductProcessFacade {
 	
 	@HystrixCommand(fallbackMethod = "executeFallBackV2",
 			commandProperties = {@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
-					@HystrixProperty(name="circuitBreaker.requestVolumeThreshold", value="3"),
-					@HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value="36000000")})
+					@HystrixProperty(name="circuitBreaker.requestVolumeThreshold", value="1"),
+					@HystrixProperty(name="circuitBreaker.sleepWindowInMilliseconds", value="10000")})
 	public org.salgar.product.api.v2.model.Product getProductV2(int productId) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.product.api.v2.model.Product result = productServiceV2.giveProduct(productId);
 		

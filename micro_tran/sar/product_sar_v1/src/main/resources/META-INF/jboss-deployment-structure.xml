@@ -6,11 +6,11 @@
        </dependencies>
         <resources>
         	<resource-root path="lib/sar-utility-1.0-SNAPSHOT.jar" />
-        	<resource-root path="lib/spring-context-4.2.5.RELEASE.jar" />
-        	<resource-root path="lib/spring-beans-4.2.5.RELEASE.jar" />
-        	<resource-root path="lib/spring-core-4.2.5.RELEASE.jar" />
-        	<resource-root path="lib/spring-aop-4.2.5.RELEASE.jar" />
-        	<resource-root path="lib/spring-expression-4.2.5.RELEASE.jar" />
+        	<resource-root path="lib/spring-context-4.2.6.RELEASE.jar" />
+        	<resource-root path="lib/spring-beans-4.2.6.RELEASE.jar" />
+        	<resource-root path="lib/spring-core-4.2.6.RELEASE.jar" />
+        	<resource-root path="lib/spring-aop-4.2.6.RELEASE.jar" />
+        	<resource-root path="lib/spring-expression-4.2.6.RELEASE.jar" />
         </resources>
         <exclusions>
         </exclusions>
