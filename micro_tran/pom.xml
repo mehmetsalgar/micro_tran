@@ -51,7 +51,7 @@
 	<module>services</module>
 	<module>processes</module>
 	<module>support</module>
-    
+    <module>assembler</module>
   </modules>
 
   <dependencies>

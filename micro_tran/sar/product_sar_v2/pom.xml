@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>product_sar_v2</artifactId>
-	
+
 	<!-- packaging>jar</packaging -->
 	<packaging>jboss-sar</packaging>
 
@@ -48,6 +48,13 @@
 			<groupId>org.salgar</groupId>
 			<artifactId>sar-utility</artifactId>
 			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.salgar</groupId>
+			<artifactId>health-check-api</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>

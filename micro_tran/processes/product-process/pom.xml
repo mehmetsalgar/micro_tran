@@ -43,6 +43,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.salgar</groupId>
+			<artifactId>health-check-api</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.salgar</groupId>
 			<artifactId>product_api_v1</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>

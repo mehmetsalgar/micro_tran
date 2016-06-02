@@ -30,7 +30,6 @@ public class ProductServiceImp implements ProductService {
 		return "Test: we are alive!";
 	}
 
-	@Override
 	@ManagedOperation(description = "Delivers we are alive message 2!")
     @ManagedOperationParameters()
 	public String giveAlive2() {
