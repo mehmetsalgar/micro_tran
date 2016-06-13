@@ -1,30 +1,34 @@
 package org.salgar.product.v1.imp;
+
 import org.salgar.product.api.v1.ProductService;
 import org.salgar.product.api.v1.model.Product;
-import org.springframework.jmx.export.annotation.ManagedOperation;
-import org.springframework.jmx.export.annotation.ManagedOperationParameter;
-import org.springframework.jmx.export.annotation.ManagedOperationParameters;
-import org.springframework.jmx.export.annotation.ManagedResource;
+import org.salgar.product.v1.dao.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-@ManagedResource(objectName = "salgar:name=salgar-product-service-v1,type=org.salgar.product.v1.imp.ProductServiceImp,artifactId=salgar-product-service-v1", description = "Product Service V1", log = true, logFile = "jmx.log")
+@Component
+@Transactional
 public class ProductServiceImp implements ProductService {
-
+	@Autowired
+	private ProductRepository productRepository;
+	
 	@Override
-	@ManagedOperation(description = "Gets a parameter as String")
-    @ManagedOperationParameters({
-    	@ManagedOperationParameter(name="productId", description="Id of the product that we want to load.")
-    })
-	public Product giveProduct(Integer productId) {
-		Product result = new Product();
-		result.setName("topProduct1");
-		result.setProductId(1);
-		return result;
+	@Transactional(readOnly = true, propagation = Propagation.NEVER)
+	public String giveAlive() {
+		return "Test: we are alive!";
 	}
 
 	@Override
-	@ManagedOperation(description = "Delivers we are alive message!")
-    @ManagedOperationParameters()
-	public String giveAlive() {
-		return "Test: we are alive!";
+	@Transactional(readOnly = true)
+	public Product giveProduct(Integer productId) {
+		return productRepository.findById(productId);
+	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void saveProduct(Product product) {
+		productRepository.saveProduct(product);
 	}
 }

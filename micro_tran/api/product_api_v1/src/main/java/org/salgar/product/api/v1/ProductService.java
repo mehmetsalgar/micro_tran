@@ -5,4 +5,5 @@ import org.salgar.product.api.v1.model.Product;
 
 public interface ProductService extends HealthCheck {
 	Product giveProduct(Integer productId);
+	void saveProduct(Product product);
 }

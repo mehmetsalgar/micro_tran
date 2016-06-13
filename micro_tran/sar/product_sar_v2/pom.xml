@@ -48,7 +48,6 @@
 			<groupId>org.salgar</groupId>
 			<artifactId>sar-utility</artifactId>
 			<version>${project.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>

@@ -11,8 +11,10 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableCircuitBreaker
-@ImportResource(locations = {"classpath:/META-INF/spring/org/salgar/v1/applicationContext.xml",
-		"classpath:/META-INF/spring/org/salgar/v2/applicationContext.xml"})
+@ImportResource(locations = {"classpath:/META-INF/spring/org/salgar/product/v1/applicationContext.xml",
+		"classpath:/META-INF/spring/org/salgar/product/v2/applicationContext.xml",
+		"classpath:/META-INF/spring/org/salgar/order/v1/applicationContext.xml",
+		"classpath:/META-INF/spring/org/salgar/dao/applicationContext-dao.xml"})
 public class ProductProcessApplication extends SpringBootServletInitializer {
 	
 	@Override

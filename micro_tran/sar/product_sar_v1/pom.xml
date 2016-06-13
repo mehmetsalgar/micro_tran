@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>product_sar_v1</artifactId>
-	
+
 	<!-- packaging>jar</packaging -->
 	<packaging>jboss-sar</packaging>
 
@@ -30,17 +30,16 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<!-- plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>eap6-maven-plugin</artifactId> 
-				<executions> <execution> <goals> <goal>build</goal> </goals> </execution> 
-				</executions> <configuration> <isSubDeployment>false</isSubDeployment> </configuration> 
-				</plugin -->
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jboss-packaging-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<version>2.2</version>
 			</plugin>
+			<!-- plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>eap6-maven-plugin</artifactId> 
+				<executions> <execution> <goals> <goal>build</goal> </goals> </execution> 
+				</executions> <configuration> <isSubDeployment>false</isSubDeployment> </configuration> 
+				</plugin -->
 		</plugins>
 	</build>
 	<dependencies>
@@ -48,7 +47,6 @@
 			<groupId>org.salgar</groupId>
 			<artifactId>sar-utility</artifactId>
 			<version>${project.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
@@ -66,6 +64,32 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
