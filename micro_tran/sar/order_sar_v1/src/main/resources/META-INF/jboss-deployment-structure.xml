@@ -4,6 +4,7 @@
         <dependencies>
         	<module name="org.salgar.order.api.1_0"/>
         	<module name="org.salgar.product.api.1_0"/>
+        	<module name="org.salgar.customer.api.1_0" />
         	<module name="org.hibernate" />
        </dependencies>
         <resources>

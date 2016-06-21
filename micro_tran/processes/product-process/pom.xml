@@ -66,6 +66,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.salgar</groupId>
+			<artifactId>customer_api_v1</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${spring.boot.version}</version>

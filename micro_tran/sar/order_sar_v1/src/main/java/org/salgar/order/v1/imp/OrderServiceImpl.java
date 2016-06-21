@@ -1,5 +1,7 @@
 package org.salgar.order.v1.imp;
 
+import java.util.List;
+
 import org.salgar.order.api.v1.OrderService;
 import org.salgar.order.api.v1.model.Order;
 import org.salgar.order.v1.dao.OrderRepository;
@@ -17,7 +19,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.NEVER)
 	public String giveAlive() {
-		return "We are alive!";
+		return alive_signal;
 	}
 
 	@Override
@@ -30,5 +32,13 @@ public class OrderServiceImpl implements OrderService {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void saveOrder(Order order) {
 		orderRepository.saveOrder(order);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Order> giveCustomerOrders(Integer customerId) {
+		List<Order> results = orderRepository.giveCustomerOrders(customerId);
+		
+		return results;
 	}
 }

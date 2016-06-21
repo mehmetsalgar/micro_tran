@@ -7,8 +7,6 @@ import java.util.Map;
 
 import javax.inject.Named;
 
-import org.salgar.order.api.v1.model.Order;
-import org.salgar.product.api.v1.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -35,6 +33,10 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	@Autowired(required = false)
 	@Named("proxyOrderServiceV1")
 	private org.salgar.order.api.v1.OrderService orderServiceV1;
+	
+	@Autowired(required = false)
+	@Named("proxyCustomerServiceV1")
+	private org.salgar.customer.api.v1.CustomerService customerServiceV1;
 
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
@@ -114,14 +116,14 @@ public class ProcessFacadeImpl implements ProcessFacade {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
-	public Order getOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
+	public org.salgar.order.api.v1.model.Order getOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.order.api.v1.model.Order result = orderServiceV1.giveOrder(orderId);
 
 		return result;
 	}
 
 	@Override
-	public Order executeFallBackOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
+	public org.salgar.order.api.v1.model.Order executeFallBackOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
 		ServiceInstance instance = loadBalancerClient.choose("order_v1_rest");
 
 		URI uri = instance.getUri();
@@ -141,12 +143,12 @@ public class ProcessFacadeImpl implements ProcessFacade {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
-	public void saveOrderV1(Order order) throws JsonParseException, JsonMappingException, IOException {
+	public void saveOrderV1(org.salgar.order.api.v1.model.Order order) throws JsonParseException, JsonMappingException, IOException {
 		orderServiceV1.saveOrder(order);
 	}
 
 	@Override
-	public void executeFallBackSaveOrderV1(Order order) throws JsonParseException, JsonMappingException, IOException {
+	public void executeFallBackSaveOrderV1(org.salgar.order.api.v1.model.Order order) throws JsonParseException, JsonMappingException, IOException {
 		ServiceInstance instance = loadBalancerClient.choose("order_v1_rest");
 
 		URI uri = instance.getUri();
@@ -155,5 +157,27 @@ public class ProcessFacadeImpl implements ProcessFacade {
 		Map<String, Object> params = new HashMap<String, Object>();
 		
 		ResponseEntity<Void> result = restTemplate.postForEntity(url, null, Void.class, params);
+	}
+
+	@Override
+	public void executeFallBackSaveCustomerV1(org.salgar.customer.api.v1.model.Customer customer)
+			throws JsonParseException, JsonMappingException, IOException {
+		ServiceInstance instance = loadBalancerClient.choose("customer_v1_rest");
+
+		URI uri = instance.getUri();
+		String url = uri.toString() + "/customer_v1_rest//saveCustomer/v1";
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		ResponseEntity<Void> result = restTemplate.postForEntity(url, null, Void.class, params);
+	}
+
+	@Override
+	@HystrixCommand(fallbackMethod = "executeFallBackSaveCustomerV1", commandProperties = {
+			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
+			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
+			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
+	public void saveCustomerV1(org.salgar.customer.api.v1.model.Customer customer) throws JsonParseException, JsonMappingException, IOException {
+		customerServiceV1.saveCustomer(customer);
 	}
 }

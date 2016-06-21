@@ -17,7 +17,7 @@ public class ProductServiceImp implements ProductService {
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.NEVER)
 	public String giveAlive() {
-		return "Test: we are alive!";
+		return alive_signal;
 	}
 
 	@Override

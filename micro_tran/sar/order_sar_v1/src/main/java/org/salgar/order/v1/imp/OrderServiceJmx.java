@@ -1,5 +1,7 @@
 package org.salgar.order.v1.imp;
 
+import java.util.List;
+
 import org.salgar.order.api.v1.OrderService;
 import org.salgar.order.api.v1.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,8 @@ public class OrderServiceJmx implements OrderService {
 	@Override
 	@ManagedOperation(description = "Gets a parameter as String and delivers an Order")
     @ManagedOperationParameters({
-    	@ManagedOperationParameter(name="productId", description="Id of the order that we want to load.")
+    	@ManagedOperationParameter(name="orderId", description="Id of the order that we want to load.")
     })
-	
 	public Order giveOrder(Integer id) {
 		return orderService.giveOrder(id);
 	}
@@ -37,5 +38,14 @@ public class OrderServiceJmx implements OrderService {
     @ManagedOperationParameters()
 	public String giveAlive() {
 		return orderService.giveAlive();
+	}
+
+	@Override
+	@ManagedOperation(description = "Gives the orders of the customer")
+    @ManagedOperationParameters({
+    	@ManagedOperationParameter(name="customerId", description="Id of the customer who owns the orders")
+    })
+	public List<Order> giveCustomerOrders(Integer customerId) {
+		return orderService.giveCustomerOrders(customerId);
 	}
 }

@@ -27,6 +27,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.salgar</groupId>
+			<artifactId>customer_api_v1</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>1.0.0.Final</version>

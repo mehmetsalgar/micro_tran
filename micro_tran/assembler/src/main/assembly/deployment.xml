@@ -32,6 +32,14 @@
 		</dependencySet>
 		<dependencySet>
 			<includes>
+				<include>org.salgar:customer_api_v1</include>
+			</includes>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<outputDirectory>modules/system/layers/base/org/salgar/customer/api/1_0/main</outputDirectory>
+			<unpack>false</unpack>
+		</dependencySet>
+		<dependencySet>
+			<includes>
 				<include>org.salgar:product_sar_v1</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
@@ -49,6 +57,14 @@
 		<dependencySet>
 			<includes>
 				<include>org.salgar:order_sar_v1</include>
+			</includes>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<outputDirectory>standalone/deployments</outputDirectory>
+			<unpack>false</unpack>
+		</dependencySet>
+		<dependencySet>
+			<includes>
+				<include>org.salgar:customer_sar_v1</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
@@ -75,6 +91,15 @@
 		<dependencySet>
 			<includes>
 				<include>org.salgar:order_v1_rest</include>
+			</includes>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<outputDirectory>standalone/deployments</outputDirectory>
+			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+			<unpack>false</unpack>
+		</dependencySet>
+		<dependencySet>
+			<includes>
+				<include>org.salgar:customer_v1_rest</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>

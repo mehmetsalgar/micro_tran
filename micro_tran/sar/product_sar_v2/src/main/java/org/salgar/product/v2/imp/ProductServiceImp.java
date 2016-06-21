@@ -26,14 +26,6 @@ public class ProductServiceImp implements ProductService {
 	@ManagedOperation(description = "Delivers we are alive message!")
     @ManagedOperationParameters()
 	public String giveAlive() {
-		// TODO Auto-generated method stub
-		return "Test: we are alive!";
-	}
-
-	@ManagedOperation(description = "Delivers we are alive message 2!")
-    @ManagedOperationParameters()
-	public String giveAlive2() {
-		// TODO Auto-generated method stub
-		return "Test2: we are alive!";
+		return alive_signal;
 	}
 }

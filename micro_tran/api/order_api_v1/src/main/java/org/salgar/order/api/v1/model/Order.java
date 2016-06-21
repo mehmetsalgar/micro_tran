@@ -12,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.salgar.customer.api.v1.model.Customer;
 import org.salgar.product.api.v1.model.Product;
 
 @Entity
@@ -27,6 +30,9 @@ public class Order {
 	private List<Product> products = new ArrayList<Product>();
 	private Long commitDate;
 	private Integer status;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+	@JoinColumn(name = "CUSTOMERID")
+	private Customer customer;
 
 	public Integer getId() {
 		return id;
@@ -58,5 +64,13 @@ public class Order {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 }

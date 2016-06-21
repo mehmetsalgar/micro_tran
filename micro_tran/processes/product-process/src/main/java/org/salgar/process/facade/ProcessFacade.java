@@ -29,4 +29,10 @@ public interface ProcessFacade {
 	
 	void executeFallBackSaveOrderV1(org.salgar.order.api.v1.model.Order order)
 			throws JsonParseException, JsonMappingException, IOException;
+	
+	void saveCustomerV1(org.salgar.customer.api.v1.model.Customer customer)
+			throws JsonParseException, JsonMappingException, IOException;
+	
+	void executeFallBackSaveCustomerV1(org.salgar.customer.api.v1.model.Customer customer)
+			throws JsonParseException, JsonMappingException, IOException;
 }

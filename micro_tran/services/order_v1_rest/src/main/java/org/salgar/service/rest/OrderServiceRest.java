@@ -1,5 +1,7 @@
 package org.salgar.service.rest;
 
+import java.util.List;
+
 import javax.inject.Named;
 
 import org.salgar.order.api.v1.OrderService;
@@ -27,5 +29,12 @@ public class OrderServiceRest {
 	@RequestMapping(path = "/save_order", method = RequestMethod.POST)
 	public void saveOrder(@RequestBody Order order) {
 		orderService.saveOrder(order);
+	}
+	
+	@RequestMapping("/customerOrders/{customerId}")
+	public List<Order> giveCustomerOrders(@PathVariable("customerId") Integer customerId) {
+		List<Order> result =  orderService.giveCustomerOrders(customerId);
+		
+		return result;
 	}
 }

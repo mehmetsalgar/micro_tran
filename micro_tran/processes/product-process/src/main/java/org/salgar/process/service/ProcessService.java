@@ -5,7 +5,8 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
-import org.salgar.order.api.v1.model.Order;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.salgar.process.facade.ProcessFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,9 +24,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 @RestController
 @Transactional
 public class ProcessService {
+	private final static Log LOG = LogFactory.getLog(ProcessService.class);
 	private boolean routeRestProductV1 = false;
 	private boolean routeRestProductV2 = false;
 	private boolean routeRestOrderV1 = false;
+	private boolean routeRestCustomerV1 = false;
 	
 	@Autowired(required = false)
 	@Named("proxyProductServiceV1")
@@ -38,6 +41,10 @@ public class ProcessService {
 	@Autowired(required = false)
 	@Named("proxyOrderServiceV1")
 	private org.salgar.order.api.v1.OrderService orderServiceV1;
+	
+	@Autowired(required = false)
+	@Named("proxyCustomerServiceV1")
+	private org.salgar.customer.api.v1.CustomerService customerServiceV1;
 	
 	@Autowired
 	private ProcessFacade processFacade;
@@ -53,6 +60,7 @@ public class ProcessService {
 					routeRestProductV1 = true;
 				}
 			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
 				routeRestProductV1 = true;
 			}
 		}
@@ -66,6 +74,7 @@ public class ProcessService {
 					routeRestProductV2 = true;
 				}
 			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
 				routeRestProductV2 = true;
 			}
 		}
@@ -79,7 +88,22 @@ public class ProcessService {
 					routeRestOrderV1 = true;
 				}
 			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
 				routeRestOrderV1 = true;
+			}
+		}
+		
+		if(customerServiceV1 == null) {
+			routeRestCustomerV1 = false;
+		} else  {
+			try {
+				String healthCheck = customerServiceV1.giveAlive();
+				if(healthCheck == null && "".equals(healthCheck)) {
+					routeRestCustomerV1 = true;
+				}
+			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
+				routeRestCustomerV1 = true;
 			}
 		}
 	}
@@ -126,6 +150,7 @@ public class ProcessService {
 	public void saveOrderV1(@RequestBody org.salgar.order.api.v1.model.Order order) throws JsonParseException, JsonMappingException, IOException {
 		if (routeRestOrderV1) {
 			processFacade.executeFallBackSaveOrderV1(order);
+			return;
 		}
 		
 		processFacade.saveOrderV1(order);
@@ -134,19 +159,30 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/saveOrderWithProduct/v1", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public void saveOrderWithAnExistingProduct(@RequestBody Order order, @RequestParam("productId") Integer productId) throws JsonParseException, JsonMappingException, IOException {
+	public void saveOrderWithAnExistingProduct(@RequestBody org.salgar.order.api.v1.model.Order order, @RequestParam("productId") Integer productId) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.product.api.v1.model.Product product;
 		if (routeRestProductV1) {
 			product = processFacade.executeFallBackProductV1(productId);
-		}
-
-		product = processFacade.getProductV1(productId);
-		
-		if (routeRestOrderV1) {
-			processFacade.executeFallBackSaveOrderV1(order);
+		} else {
+			product = processFacade.getProductV1(productId);
 		}
 		
 		order.getProducts().add(product);
-		processFacade.saveOrderV1(order);
+		if (routeRestOrderV1) {
+			processFacade.executeFallBackSaveOrderV1(order);
+		} else {
+			processFacade.saveOrderV1(order);
+		}
+	}
+	
+	@RequestMapping(path = "/saveCustomer/v1", method = RequestMethod.POST)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public void saveCustomerV1(org.salgar.customer.api.v1.model.Customer customer) throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestCustomerV1) {
+			processFacade.executeFallBackSaveCustomerV1(customer);
+			return;
+		}
+		
+		processFacade.saveCustomerV1(customer);
 	}
 }

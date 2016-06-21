@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: ${project.artifactId}
+  jmx:
+    default-domain: ${project.artifactId}
+  cloud:
+    config:
+      uri: ${vcap.services.${PREFIX:}configserver.credentials.uri:http://user:password@localhost:8888}

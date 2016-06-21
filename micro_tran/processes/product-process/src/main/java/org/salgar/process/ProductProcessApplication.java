@@ -14,6 +14,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource(locations = {"classpath:/META-INF/spring/org/salgar/product/v1/applicationContext.xml",
 		"classpath:/META-INF/spring/org/salgar/product/v2/applicationContext.xml",
 		"classpath:/META-INF/spring/org/salgar/order/v1/applicationContext.xml",
+		"classpath:/META-INF/spring/org/salgar/customer/v1/applicationContext.xml",
 		"classpath:/META-INF/spring/org/salgar/dao/applicationContext-dao.xml"})
 public class ProductProcessApplication extends SpringBootServletInitializer {
 	
