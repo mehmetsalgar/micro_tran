@@ -46,6 +46,7 @@
   <modules>
 	<module>sar-utility</module>
 	<module>healthcheck</module>
+	<module>annotation</module>
 	<module>api</module>
     <module>sar</module>
 	<module>services</module>
