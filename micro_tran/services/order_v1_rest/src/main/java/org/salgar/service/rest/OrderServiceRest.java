@@ -27,8 +27,8 @@ public class OrderServiceRest {
 	}
 	
 	@RequestMapping(path = "/save_order", method = RequestMethod.POST)
-	public void saveOrder(@RequestBody Order order) {
-		orderService.saveOrder(order);
+	public Order saveOrder(@RequestBody Order order) {
+		return orderService.saveOrder(order);
 	}
 	
 	@RequestMapping("/customerOrders/{customerId}")

@@ -4,5 +4,5 @@ import org.salgar.customer.api.v1.model.Customer;
 
 public interface CustomerRepository {
 	Customer findById(Integer customerId);
-	void saveCustomer(Customer customer);
+	Customer saveCustomer(Customer customer);
 }

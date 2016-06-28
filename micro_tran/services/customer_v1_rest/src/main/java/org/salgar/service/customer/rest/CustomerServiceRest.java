@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,8 +30,8 @@ public class CustomerServiceRest {
 		return resut;
 	}
 
-	@RequestMapping("/saveCustomer")
-	public void saveCustomer(@RequestBody Customer customer) {
-		customerService.saveCustomer(customer);
+	@RequestMapping(path = "/saveCustomer", method = RequestMethod.POST)
+	public Customer saveCustomer(@RequestBody Customer customer) {
+		return customerService.saveCustomer(customer);
 	}
 }

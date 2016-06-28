@@ -7,6 +7,6 @@ import org.salgar.order.api.v1.model.Order;
 
 public interface OrderService extends HealthCheck {
 	Order giveOrder(Integer id);
-	void saveOrder(Order order);
+	Order saveOrder(Order order);
 	List<Order> giveCustomerOrders(Integer customerId);
 }

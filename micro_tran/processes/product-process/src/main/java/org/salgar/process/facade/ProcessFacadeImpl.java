@@ -43,22 +43,24 @@ public class ProcessFacadeImpl implements ProcessFacade {
 
 	private RestTemplate restTemplate = new RestTemplate();
 
+	@Override
 	@HystrixCommand(fallbackMethod = "executeFallBackProductV1", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
-	public org.salgar.product.api.v1.model.Product getProductV1(int productId)
+	public org.salgar.product.api.v1.model.Product giveProductV1(int productId)
 			throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.product.api.v1.model.Product result = productServiceV1.giveProduct(productId);
 
 		return result;
 	}
 
+	@Override
 	@HystrixCommand(fallbackMethod = "executeFallBackProductV2", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
-	public org.salgar.product.api.v2.model.Product getProductV2(int productId)
+	public org.salgar.product.api.v2.model.Product giveProductV2(int productId)
 			throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.product.api.v2.model.Product result = productServiceV2.giveProduct(productId);
 
@@ -74,10 +76,10 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	@Override
 	public org.salgar.product.api.v1.model.Product executeFallBackProductV1(int productId)
 			throws JsonParseException, JsonMappingException, IOException {
-		ServiceInstance instance = loadBalancerClient.choose("product_service_rest_v1");
+		ServiceInstance instance = loadBalancerClient.choose("product_v1_rest");
 
 		URI uri = instance.getUri();
-		String url = uri.toString() + "/product/v1/" + productId;
+		String url = uri.toString() + "/product_v1_rest/product/" + productId;
 
 		ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 
@@ -112,18 +114,18 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	}
 
 	@Override
-	@HystrixCommand(fallbackMethod = "executeFallBackOrderV1", commandProperties = {
+	@HystrixCommand(fallbackMethod = "executeFallBackGiveOrderV1", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
-	public org.salgar.order.api.v1.model.Order getOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
+	public org.salgar.order.api.v1.model.Order giveOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.order.api.v1.model.Order result = orderServiceV1.giveOrder(orderId);
 
 		return result;
 	}
 
 	@Override
-	public org.salgar.order.api.v1.model.Order executeFallBackOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
+	public org.salgar.order.api.v1.model.Order executeFallBackGiveOrderV1(int orderId) throws JsonParseException, JsonMappingException, IOException {
 		ServiceInstance instance = loadBalancerClient.choose("order_v1_rest");
 
 		URI uri = instance.getUri();
@@ -143,33 +145,39 @@ public class ProcessFacadeImpl implements ProcessFacade {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
-	public void saveOrderV1(org.salgar.order.api.v1.model.Order order) throws JsonParseException, JsonMappingException, IOException {
-		orderServiceV1.saveOrder(order);
+	public org.salgar.order.api.v1.model.Order saveOrderV1(org.salgar.order.api.v1.model.Order order) throws JsonParseException, JsonMappingException, IOException {
+		return orderServiceV1.saveOrder(order);
 	}
 
 	@Override
-	public void executeFallBackSaveOrderV1(org.salgar.order.api.v1.model.Order order) throws JsonParseException, JsonMappingException, IOException {
+	public org.salgar.order.api.v1.model.Order executeFallBackSaveOrderV1(org.salgar.order.api.v1.model.Order order) throws JsonParseException, JsonMappingException, IOException {
 		ServiceInstance instance = loadBalancerClient.choose("order_v1_rest");
 
 		URI uri = instance.getUri();
 		String url = uri.toString() + "/order_v1_rest/save_order";
 
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("order", order);
 		
-		ResponseEntity<Void> result = restTemplate.postForEntity(url, null, Void.class, params);
+		ResponseEntity<org.salgar.order.api.v1.model.Order> result = restTemplate.postForEntity(url, null, org.salgar.order.api.v1.model.Order.class, params);
+		
+		return result.getBody();
 	}
 
 	@Override
-	public void executeFallBackSaveCustomerV1(org.salgar.customer.api.v1.model.Customer customer)
+	public org.salgar.customer.api.v1.model.Customer executeFallBackSaveCustomerV1(org.salgar.customer.api.v1.model.Customer customer)
 			throws JsonParseException, JsonMappingException, IOException {
 		ServiceInstance instance = loadBalancerClient.choose("customer_v1_rest");
 
 		URI uri = instance.getUri();
-		String url = uri.toString() + "/customer_v1_rest//saveCustomer/v1";
+		String url = uri.toString() + "/customer_v1_rest/saveCustomer";
 
 		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("customer", customer);
 		
-		ResponseEntity<Void> result = restTemplate.postForEntity(url, null, Void.class, params);
+		ResponseEntity<org.salgar.customer.api.v1.model.Customer> result = restTemplate.postForEntity(url, null, org.salgar.customer.api.v1.model.Customer.class, params);
+		
+		return result.getBody();
 	}
 
 	@Override
@@ -177,7 +185,58 @@ public class ProcessFacadeImpl implements ProcessFacade {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
-	public void saveCustomerV1(org.salgar.customer.api.v1.model.Customer customer) throws JsonParseException, JsonMappingException, IOException {
-		customerServiceV1.saveCustomer(customer);
+	public org.salgar.customer.api.v1.model.Customer saveCustomerV1(org.salgar.customer.api.v1.model.Customer customer) throws JsonParseException, JsonMappingException, IOException {
+		return customerServiceV1.saveCustomer(customer);
+	}
+
+
+	@Override
+	@HystrixCommand(fallbackMethod = "executeFallBackGiveCustomerV1", commandProperties = {
+			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
+			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
+			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
+	public org.salgar.customer.api.v1.model.Customer giveCustomerV1(int customerId) throws JsonParseException, JsonMappingException, IOException {
+		return customerServiceV1.giveCustomer(customerId);
+	}
+
+	@Override
+	public org.salgar.customer.api.v1.model.Customer executeFallBackGiveCustomerV1(int customerId)
+			throws JsonParseException, JsonMappingException, IOException {
+		ServiceInstance instance = loadBalancerClient.choose("customer_v1_rest");
+
+		URI uri = instance.getUri();
+		String url = uri.toString() + "/customer_v1_rest/customer/" + customerId;
+
+		ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
+
+		ObjectMapper mapper = new ObjectMapper();
+		org.salgar.customer.api.v1.model.Customer order = mapper.readValue(result.getBody(),
+				org.salgar.customer.api.v1.model.Customer.class);
+
+		return order;
+	}
+
+	@Override
+	@HystrixCommand(fallbackMethod = "executeFallBackSaveProductV1", commandProperties = {
+			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
+			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
+			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
+	public org.salgar.product.api.v1.model.Product saveProductV1(org.salgar.product.api.v1.model.Product product) throws JsonParseException, JsonMappingException, IOException {
+		return productServiceV1.saveProduct(product);
+	}
+
+	@Override
+	public org.salgar.product.api.v1.model.Product executeFallBackSaveProductV1(org.salgar.product.api.v1.model.Product product) {
+		ServiceInstance instance = loadBalancerClient.choose("product_v1_rest");
+
+		URI uri = instance.getUri();
+		String url = uri.toString() + "/product_v1_rest/saveProduct";
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("product", product);
+		
+		ResponseEntity<org.salgar.product.api.v1.model.Product> result = restTemplate.postForEntity(url, null, org.salgar.product.api.v1.model.Product.class, params);
+		
+		return result.getBody();
 	}
 }

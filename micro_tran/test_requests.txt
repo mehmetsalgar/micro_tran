@@ -1,0 +1,27 @@
+{
+  "order" :{"id":null,"products":null,"commitDate":345345345,"status":5,"customer": null},
+  "product" : {"productId":null,"name":"Test"},
+  "customer" : {"id":null,"name":"Doe","firstName":"John","birthDate":2432423}
+ }
+
+  
+  http://localhost:8080/product-process/saveOrderWProductWCustomerTransactionProof/v1
+  
+  {
+ "order" :{"id":null,"products":null,"commitDate":345345345,"status":5,"customer": null},
+  "product" : {"productId":9999,"name":"Test"},
+  "customer" : {"id":1,"name":"Doe","firstName":"John","birthDate":2432423}
+}
+
+http://localhost:8080/product-process/saveOrderWProductWCustomer/v1
+
+{"id":null,"products":null,"commitDate":345345345,"status":5,"customer": null}
+http://localhost:8080/product-process/saveOrder/v1
+
+{"id":null,"name":"Snow","firstName":"John","birthDate":986756767}
+
+http://localhost:8765/product-process/saveCustomer/v1
+
+{"id":null,"products":[{"productId":9999,"name":"Test"}],"commitDate":345345345,"status":5,"customer":{"id":1,"name":"Doe","firstName":"John","birthDate":2432423}}
+
+http://localhost:8080/order_v1_rest/save_order

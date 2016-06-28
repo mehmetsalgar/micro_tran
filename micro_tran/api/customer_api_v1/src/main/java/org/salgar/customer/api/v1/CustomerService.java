@@ -5,5 +5,5 @@ import org.salgar.healthcheck.HealthCheck;
 
 public interface CustomerService extends HealthCheck {
 	Customer giveCustomer(Integer customerId);
-	void saveCustomer(Customer customer);
+	Customer saveCustomer(Customer customer);
 }

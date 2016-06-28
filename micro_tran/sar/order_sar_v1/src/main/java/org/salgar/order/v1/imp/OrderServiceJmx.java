@@ -29,8 +29,8 @@ public class OrderServiceJmx implements OrderService {
     @ManagedOperationParameters({
     	@ManagedOperationParameter(name="order", description="Order that we want to save.")
     })
-	public void saveOrder(Order order) {
-		orderService.saveOrder(order);
+	public Order saveOrder(Order order) {
+		return orderService.saveOrder(order);
 	}
 
 	@Override

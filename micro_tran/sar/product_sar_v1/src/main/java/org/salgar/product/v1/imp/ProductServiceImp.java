@@ -28,7 +28,7 @@ public class ProductServiceImp implements ProductService {
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void saveProduct(Product product) {
-		productRepository.saveProduct(product);
+	public Product saveProduct(Product product) {
+		return productRepository.saveProduct(product);
 	}
 }

@@ -17,7 +17,7 @@ public class JpaCustomerRepostiory implements CustomerRepository {
 	}
 
 	@Override
-	public void saveCustomer(Customer customer) {
-		entityManager.merge(customer);
+	public Customer saveCustomer(Customer customer) {
+		return entityManager.merge(customer);
 	}
 }

@@ -34,7 +34,7 @@ public class CustomerServiceJmx implements CustomerService {
     @ManagedOperationParameters({
     	@ManagedOperationParameter(name="customer", description="Customer that we want to save.")
     })
-	public void saveCustomer(Customer customer) {
-		customerService.saveCustomer(customer);
+	public Customer saveCustomer(Customer customer) {
+		return customerService.saveCustomer(customer);
 	}
 }

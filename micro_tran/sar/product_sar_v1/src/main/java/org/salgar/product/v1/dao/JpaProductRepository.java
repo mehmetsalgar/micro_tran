@@ -17,7 +17,7 @@ public class JpaProductRepository implements ProductRepository {
 	}
 
 	@Override
-	public void saveProduct(Product product) {
-		entityManager.merge(product);
+	public Product saveProduct(Product product) {
+		return entityManager.merge(product);
 	}
 }

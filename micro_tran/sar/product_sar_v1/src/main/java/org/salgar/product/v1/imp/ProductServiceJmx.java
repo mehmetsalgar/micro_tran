@@ -33,7 +33,7 @@ public class ProductServiceJmx implements ProductService {
     @ManagedOperationParameters({
     	@ManagedOperationParameter(name="product", description="Product that we want to save.")
     })
-	public void saveProduct(Product product) {
-		productService.saveProduct(product);
+	public Product saveProduct(Product product) {
+		return productService.saveProduct(product);
 	}
 }

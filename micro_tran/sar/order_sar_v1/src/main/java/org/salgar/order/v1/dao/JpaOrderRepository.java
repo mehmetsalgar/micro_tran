@@ -15,8 +15,8 @@ public class JpaOrderRepository implements OrderRepository  {
 	private EntityManager entityManager;
 	
 	@Override
-	public void saveOrder(Order order) {
-		entityManager.merge(order);
+	public Order saveOrder(Order order) {
+		return entityManager.merge(order);
 	}
 
 	@Override

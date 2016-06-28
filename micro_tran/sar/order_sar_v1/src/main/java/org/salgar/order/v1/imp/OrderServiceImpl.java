@@ -30,8 +30,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void saveOrder(Order order) {
-		orderRepository.saveOrder(order);
+	public Order saveOrder(Order order) {
+		return orderRepository.saveOrder(order);
 	}
 	
 	@Override
