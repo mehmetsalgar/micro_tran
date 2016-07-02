@@ -13,6 +13,8 @@ import org.salgar.annotation.TransactionalFanout;
 import org.salgar.process.facade.ProcessFacade;
 import org.salgar.product.api.v1.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @RestController
 @Transactional
 @TransactionalFanout( services = {"proxyProductServiceV1" , "proxyOrderServiceV1", 

@@ -1,13 +1,16 @@
 eureka:
+  appinfo:
+    replicate:
+      interval: 10
   instance:
     leaseRenewalIntervalInSeconds: 10
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
   client:
-#    region: default
     registryFetchIntervalSeconds: 5
-#    availabilityZones:
-#      default: ${APPLICATION_DOMAIN:${DOMAIN:defaultZone}}
+    healthcheck:
+      enabled: true
+    instanceInfoReplicationIntervalSeconds: 10
 
 stores:
   ribbon:
