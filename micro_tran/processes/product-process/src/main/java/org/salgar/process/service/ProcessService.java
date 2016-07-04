@@ -129,6 +129,19 @@ public class ProcessService {
 
 		return resut;
 	}
+	
+	@RequestMapping(path = "/product/v1/saveProduct", method = RequestMethod.POST)
+	@Transactional(readOnly = true)
+	public org.salgar.product.api.v1.model.Product saveProductV1(@RequestBody Product product)
+			throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestProductV1) {
+			return processFacade.executeFallBackSaveProductV1(product);
+		}
+
+		org.salgar.product.api.v1.model.Product resut = processFacade.saveProductV1(product);
+
+		return resut;
+	}
 
 	@RequestMapping("/product/v2/{productId}")
 	@Transactional(readOnly = true)
@@ -138,6 +151,18 @@ public class ProcessService {
 		}
 		
 		org.salgar.product.api.v2.model.Product resut = processFacade.giveProductV2(productId);
+
+		return resut;
+	}
+	
+	@RequestMapping(path = "/product/v2/saveProduct", method = RequestMethod.POST)
+	@Transactional(readOnly = true)
+	public org.salgar.product.api.v2.model.Product saveProductV2(@RequestBody org.salgar.product.api.v2.model.Product product) throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestProductV2) {
+			return processFacade.executeFallBackSaveProductV2(product);
+		}
+		
+		org.salgar.product.api.v2.model.Product resut = processFacade.saveProductV2(product);
 
 		return resut;
 	}

@@ -64,6 +64,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
+			<artifactId>customer_api_v2</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.salgar</groupId>
 			<artifactId>product_sar_v1</artifactId>
 			<version>${project.version}</version>
 			<type>sar</type>
@@ -88,6 +93,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
+			<artifactId>customer_sar_v2</artifactId>
+			<version>${project.version}</version>
+			<type>sar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.salgar</groupId>
 			<artifactId>product_v1_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
@@ -107,6 +118,12 @@
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>customer_v1_rest</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.salgar</groupId>
+			<artifactId>customer_v2_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>

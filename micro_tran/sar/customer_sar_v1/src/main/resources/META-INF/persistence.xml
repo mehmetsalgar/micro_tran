@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="CUSTOMER_SAR">
+	<persistence-unit name="CUSTOMER_V1_SAR">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>org.salgar.customer.api.v1.model.Customer</class>
 

@@ -1,30 +1,33 @@
 package org.salgar.product.v2.imp;
+
 import org.salgar.product.api.v2.ProductService;
 import org.salgar.product.api.v2.model.Product;
-import org.springframework.jmx.export.annotation.ManagedOperation;
-import org.springframework.jmx.export.annotation.ManagedOperationParameter;
-import org.springframework.jmx.export.annotation.ManagedOperationParameters;
-import org.springframework.jmx.export.annotation.ManagedResource;
+import org.salgar.product.v2.dao.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-@ManagedResource(objectName = "salgar:name=salgar-product-service-v2,type=org.salgar.product.v2.imp.ProductServiceImp,artifactId=salgar-product-service-v2", description = "Product Service", log = true, logFile = "jmx.log")
+@Component
+@Transactional
 public class ProductServiceImp implements ProductService {
-
+	@Autowired
+	private ProductRepository productRepository;
+	
 	@Override
-	@ManagedOperation(description = "Gets a parameter as String")
-    @ManagedOperationParameters({
-    	@ManagedOperationParameter(name="productId", description="Id of the product that we want to load.")
-    })
+	@Transactional(readOnly = true)
 	public Product giveProduct(Integer productId) {
-		Product result = new Product();
-		result.setProductId(2);
-		result.setName("topProduct2");
-		result.setQuality("magnificient");
-		return result;
+		return productRepository.findById(productId);
 	}
 
 	@Override
-	@ManagedOperation(description = "Delivers we are alive message!")
-    @ManagedOperationParameters()
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Product saveProduct(Product product) {
+		return productRepository.saveProduct(product);
+	}
+	
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.NEVER)
 	public String giveAlive() {
 		return alive_signal;
 	}

@@ -3,6 +3,7 @@
     <deployment>
         <dependencies>
         	<module name="org.salgar.product.api.2_0"/>
+        	<module name="org.hibernate" />
        </dependencies>
         <resources>
         	<resource-root path="lib/sar-utility-1.0-SNAPSHOT.jar" />
