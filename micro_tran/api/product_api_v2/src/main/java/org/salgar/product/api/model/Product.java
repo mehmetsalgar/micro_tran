@@ -1,4 +1,4 @@
-package org.salgar.product.api.v2.model;
+package org.salgar.product.api.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

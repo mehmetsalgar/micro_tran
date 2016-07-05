@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 public class HealtCheckerV2Factory {
 	@Autowired
 	@Named("proxyProductService")
-	org.salgar.product.api.v2.ProductService productService;
+	org.salgar.product.api.ProductService productService;
 	
 	@Bean
-	public RestHealthIndicator<org.salgar.product.api.v2.ProductService> getHealtIndicator() {
-		return new RestHealthIndicator<org.salgar.product.api.v2.ProductService>(productService);
+	public RestHealthIndicator<org.salgar.product.api.ProductService> getHealtIndicator() {
+		return new RestHealthIndicator<org.salgar.product.api.ProductService>(productService);
 	}
 }

@@ -36,7 +36,7 @@
   </build>
   
   <modules>
-    <module>product-process</module>
+    <!--module>product-process</module-->
   </modules>
 
   <dependencies>

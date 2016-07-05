@@ -8,8 +8,8 @@
 		<artifactId>api</artifactId>
 		<version>${micro_tran.version}</version>
 	</parent>
-	<artifactId>product_api_v2</artifactId>
-	<name>product_api_v2</name>
+	<artifactId>product_api</artifactId>
+	<name>product_api</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

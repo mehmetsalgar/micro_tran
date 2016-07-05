@@ -8,12 +8,12 @@
 		<version>${micro_tran.version}</version>
 	</parent>
 
-	<artifactId>product_sar_v2</artifactId>
+	<artifactId>product_sar</artifactId>
 
 	<!-- packaging>jar</packaging -->
 	<packaging>jboss-sar</packaging>
 
-	<name>product_sar_v2</name>
+	<name>product_sar</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -57,7 +57,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>product_api_v2</artifactId>
+			<artifactId>product_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>

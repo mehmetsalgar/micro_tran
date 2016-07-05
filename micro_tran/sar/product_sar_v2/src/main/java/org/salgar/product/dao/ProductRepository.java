@@ -1,6 +1,6 @@
-package org.salgar.product.v2.dao;
+package org.salgar.product.dao;
 
-import org.salgar.product.api.v2.model.Product;
+import org.salgar.product.api.model.Product;
 
 public interface ProductRepository {
 	Product findById(Integer id);

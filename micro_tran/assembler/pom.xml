@@ -42,17 +42,17 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>product_api_v1</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>product_api_v2</artifactId>
+			<artifactId>product_api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>order_api_v1</artifactId>
 			<version>${project.version}</version>
@@ -77,14 +77,14 @@
 			<artifactId>product_sar_v1</artifactId>
 			<version>${project.version}</version>
 			<type>sar</type>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>product_sar_v2</artifactId>
+			<artifactId>product_sar</artifactId>
 			<version>${project.version}</version>
 			<type>sar</type>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>order_sar_v1</artifactId>
 			<version>${project.version}</version>
@@ -113,14 +113,14 @@
 			<artifactId>product_v1_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>product_v2_rest</artifactId>
+			<artifactId>product_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>order_v1_rest</artifactId>
 			<version>${project.version}</version>
@@ -149,7 +149,7 @@
 			<artifactId>product-process</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>eureka</artifactId>
