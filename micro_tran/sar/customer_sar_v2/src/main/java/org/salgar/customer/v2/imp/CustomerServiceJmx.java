@@ -32,6 +32,7 @@ public class CustomerServiceJmx implements CustomerService {
 	}
 
 	@Override
+	@ManagedOperation(description = "Returns the give alive signal!")
 	public String giveAlive() {
 		return customerService.giveAlive();
 	}

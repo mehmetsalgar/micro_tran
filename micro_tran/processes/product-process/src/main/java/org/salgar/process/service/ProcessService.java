@@ -11,7 +11,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.salgar.annotation.TransactionalFanout;
 import org.salgar.process.facade.ProcessFacade;
-import org.salgar.product.api.v1.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -37,7 +36,9 @@ public class ProcessService {
 	private boolean routeRestProductV1 = false;
 	private boolean routeRestProductV2 = false;
 	private boolean routeRestOrderV1 = false;
+	private boolean routeRestOrderV2 = false;
 	private boolean routeRestCustomerV1 = false;
+	private boolean routeRestCustomerV2 = false;
 	
 	@Autowired(required = false)
 	@Named("proxyProductServiceV1")
@@ -52,8 +53,16 @@ public class ProcessService {
 	private org.salgar.order.api.v1.OrderService orderServiceV1;
 	
 	@Autowired(required = false)
+	@Named("proxyOrderServiceV2")
+	private org.salgar.order.api.v2.OrderService orderServiceV2;
+	
+	@Autowired(required = false)
 	@Named("proxyCustomerServiceV1")
 	private org.salgar.customer.api.v1.CustomerService customerServiceV1;
+	
+	@Autowired(required = false)
+	@Named("proxyCustomerServiceV2")
+	private org.salgar.customer.api.v2.CustomerService customerServiceV2;
 	
 	@Autowired
 	private ProcessFacade processFacade;
@@ -89,7 +98,7 @@ public class ProcessService {
 		}
 		
 		if(orderServiceV1 == null) {
-			routeRestOrderV1 = false;
+			routeRestOrderV1 = true;
 		} else  {
 			try {
 				String healthCheck = orderServiceV1.giveAlive();
@@ -102,8 +111,22 @@ public class ProcessService {
 			}
 		}
 		
+		if(orderServiceV2 == null) {
+			routeRestOrderV2 = true;
+		} else  {
+			try {
+				String healthCheck = orderServiceV2.giveAlive();
+				if(healthCheck == null && "".equals(healthCheck)) {
+					routeRestOrderV2 = true;
+				}
+			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
+				routeRestOrderV2 = true;
+			}
+		}
+		
 		if(customerServiceV1 == null) {
-			routeRestCustomerV1 = false;
+			routeRestCustomerV1 = true;
 		} else  {
 			try {
 				String healthCheck = customerServiceV1.giveAlive();
@@ -113,6 +136,20 @@ public class ProcessService {
 			} catch (Throwable t) {
 				LOG.error(t.getMessage(), t);
 				routeRestCustomerV1 = true;
+			}
+		}
+		
+		if(customerServiceV2 == null) {
+			routeRestCustomerV2 = true;
+		} else  {
+			try {
+				String healthCheck = customerServiceV2.giveAlive();
+				if(healthCheck == null && "".equals(healthCheck)) {
+					routeRestCustomerV2 = true;
+				}
+			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
+				routeRestCustomerV2 = true;
 			}
 		}
 	}
@@ -132,7 +169,7 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/product/v1/saveProduct", method = RequestMethod.POST)
 	@Transactional(readOnly = true)
-	public org.salgar.product.api.v1.model.Product saveProductV1(@RequestBody Product product)
+	public org.salgar.product.api.v1.model.Product saveProductV1(@RequestBody org.salgar.product.api.v1.model.Product product)
 			throws JsonParseException, JsonMappingException, IOException {
 		if (routeRestProductV1) {
 			return processFacade.executeFallBackSaveProductV1(product);
@@ -175,6 +212,18 @@ public class ProcessService {
 		}
 		
 		org.salgar.order.api.v1.model.Order resut = processFacade.giveOrderV1(orderId);
+
+		return resut;
+	}
+	
+	@RequestMapping("/order/v2/{orderId}")
+	@Transactional(readOnly = true)
+	public org.salgar.order.api.v2.model.Order giveOrderV2(@PathVariable int orderId) throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestOrderV2) {
+			return processFacade.executeFallBackGiveOrderV2(orderId);
+		}
+		
+		org.salgar.order.api.v2.model.Order resut = processFacade.giveOrderV2(orderId);
 
 		return resut;
 	}
@@ -227,14 +276,26 @@ public class ProcessService {
 			return processFacade.executeFallBackGiveCustomerV1(customerId);
 		}
 		
-		org.salgar.customer.api.v1.model.Customer resut = processFacade.giveCustomerV1(customerId);
+		org.salgar.customer.api.v1.model.Customer result = processFacade.giveCustomerV1(customerId);
 
-		return resut;
+		return result;
+	}
+	
+	@RequestMapping("/customer/v2/{customerId}")
+	@Transactional(readOnly = true)
+	public org.salgar.customer.api.v2.model.Customer giveCustomerV2(@PathVariable int customerId) throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestCustomerV1) {
+			return processFacade.executeFallBackGiveCustomerV2(customerId);
+		}
+		
+		org.salgar.customer.api.v2.model.Customer result = processFacade.giveCustomerV2(customerId);
+
+		return result;
 	}
 	
 	@RequestMapping(path = "/saveOrderWProductWCustomer/v1", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public void saveOrderWithProductWithCustomer(@RequestBody org.salgar.process.context.v1.OrderContext orderContext) throws JsonParseException, JsonMappingException, IOException {
+	public void saveOrderV1WithProductWithCustomer(@RequestBody org.salgar.process.context.v1.OrderContext orderContext) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.customer.api.v1.model.Customer customerInternal = null;
 		
 		if (routeRestCustomerV1) {
@@ -249,7 +310,7 @@ public class ProcessService {
 			productInternal = processFacade.giveProductV1(orderContext.getProduct().getProductId());
 		}
 		
-		List<Product> products = new ArrayList<Product>();
+		List<org.salgar.product.api.v1.model.Product> products = new ArrayList<org.salgar.product.api.v1.model.Product>();
 		products.add(productInternal);
 		orderContext.getOrder().setProducts(products);
 		orderContext.getOrder().setCustomer(customerInternal);
@@ -258,6 +319,35 @@ public class ProcessService {
 			processFacade.executeFallBackSaveOrderV1(orderContext.getOrder());
 		} else {
 			processFacade.saveOrderV1(orderContext.getOrder());
+		}
+	}
+	
+	@RequestMapping(path = "/saveOrderWProductWCustomer/v2", method = RequestMethod.POST)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public void saveOrderV2WithProductWithCustomer(@RequestBody org.salgar.process.context.v2.OrderContext orderContext) throws JsonParseException, JsonMappingException, IOException {
+		org.salgar.customer.api.v2.model.Customer customerInternal = null;
+		
+		if (routeRestCustomerV2) {
+			customerInternal = processFacade.executeFallBackGiveCustomerV2(orderContext.getCustomer().getId());
+		} else {
+			customerInternal = processFacade.giveCustomerV2(orderContext.getCustomer().getId());
+		}
+		org.salgar.product.api.v2.model.Product productInternal;
+		if (routeRestProductV2) {
+			productInternal = processFacade.executeFallBackProductV2(orderContext.getProduct().getProductId());
+		} else {
+			productInternal = processFacade.giveProductV2(orderContext.getProduct().getProductId());
+		}
+		
+		List<org.salgar.product.api.v2.model.Product> products = new ArrayList<org.salgar.product.api.v2.model.Product>();
+		products.add(productInternal);
+		orderContext.getOrder().setProducts(products);
+		orderContext.getOrder().setCustomer(customerInternal);
+		
+		if (routeRestOrderV2) {
+			processFacade.executeFallBackSaveOrderV2(orderContext.getOrder());
+		} else {
+			processFacade.saveOrderV2(orderContext.getOrder());
 		}
 	}
 	
@@ -278,7 +368,7 @@ public class ProcessService {
 			productInternal = processFacade.saveProductV1(orderContext.getProduct());
 		}
 		
-		List<Product> products = new ArrayList<Product>();
+		List<org.salgar.product.api.v1.model.Product> products = new ArrayList<org.salgar.product.api.v1.model.Product>();
 		products.add(productInternal);
 		orderContext.getOrder().setProducts(products);
 		orderContext.getOrder().setCustomer(customerInternal);

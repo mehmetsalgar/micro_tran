@@ -10,7 +10,7 @@ import org.springframework.jmx.export.annotation.ManagedOperationParameter;
 import org.springframework.jmx.export.annotation.ManagedOperationParameters;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
-@ManagedResource(objectName = "salgar:name=salgar-order-service-v1,type=org.salgar.order.v1.imp.OrderServiceImp,artifactId=salgar-order-service-v1", description = "Product Service V1", log = true, logFile = "jmx.log")
+@ManagedResource(objectName = "salgar:name=salgar-order-service-v1,type=org.salgar.order.v1.imp.OrderServiceImp,artifactId=salgar-order-service-v1", description = "Order Service V1", log = true, logFile = "jmx.log")
 public class OrderServiceJmx implements OrderService {
 	@Autowired
 	private OrderService orderService;

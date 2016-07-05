@@ -49,3 +49,8 @@ http://localhost:8765/product-process/saveOrderWProductWCustomerTransactionProof
   "customer" : {"id":null,"name":"Doe","firstName":"John","birthDate":2432423}
 }
 
+http://localhost:8080/order_v2_rest/order/2
+
+http://localhost:8080/product-process/order/v2/2
+
+http://localhost:8765/product-process/order/v2/3

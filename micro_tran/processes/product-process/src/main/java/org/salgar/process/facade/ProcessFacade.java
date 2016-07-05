@@ -36,10 +36,22 @@ public interface ProcessFacade {
 	org.salgar.order.api.v1.model.Order executeFallBackGiveOrderV1(int orderId)
 			throws JsonParseException, JsonMappingException, IOException;
 	
+	org.salgar.order.api.v2.model.Order giveOrderV2(int orderId)
+			throws JsonParseException, JsonMappingException, IOException;
+	
+	org.salgar.order.api.v2.model.Order executeFallBackGiveOrderV2(int orderId)
+			throws JsonParseException, JsonMappingException, IOException;
+	
 	org.salgar.order.api.v1.model.Order saveOrderV1(org.salgar.order.api.v1.model.Order order)
 			throws JsonParseException, JsonMappingException, IOException;
 	
 	org.salgar.order.api.v1.model.Order executeFallBackSaveOrderV1(org.salgar.order.api.v1.model.Order order)
+			throws JsonParseException, JsonMappingException, IOException;
+	
+	org.salgar.order.api.v2.model.Order saveOrderV2(org.salgar.order.api.v2.model.Order order)
+			throws JsonParseException, JsonMappingException, IOException;
+	
+	org.salgar.order.api.v2.model.Order executeFallBackSaveOrderV2(org.salgar.order.api.v2.model.Order order)
 			throws JsonParseException, JsonMappingException, IOException;
 	
 	org.salgar.customer.api.v1.model.Customer saveCustomerV1(org.salgar.customer.api.v1.model.Customer customer)
@@ -52,5 +64,11 @@ public interface ProcessFacade {
 			throws JsonParseException, JsonMappingException, IOException;
 	
 	org.salgar.customer.api.v1.model.Customer executeFallBackGiveCustomerV1(int customerId)
+			throws JsonParseException, JsonMappingException, IOException;
+	
+	org.salgar.customer.api.v2.model.Customer giveCustomerV2(int customerId)
+			throws JsonParseException, JsonMappingException, IOException;
+	
+	org.salgar.customer.api.v2.model.Customer executeFallBackGiveCustomerV2(int customerId)
 			throws JsonParseException, JsonMappingException, IOException;
 }

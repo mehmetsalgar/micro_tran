@@ -5,6 +5,7 @@ import javax.inject.Named;
 import org.salgar.customer.api.v2.CustomerService;
 import org.salgar.customer.api.v2.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,12 @@ public class CustomerServiceRest {
 	@Autowired
 	@Named("proxyCustomerService")
 	private CustomerService customerService;
+	
+	@Value("${spring.application.name}")
+	private String applicationName;
+
+	@Value("${server.port}")
+	private String port;
 	
 	@RequestMapping("/customer/{customerId}")
 	public Customer getCustomer(@PathVariable int customerId) {
