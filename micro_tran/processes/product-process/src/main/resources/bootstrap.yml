@@ -2,7 +2,7 @@ spring:
   application:
     name: product_process
   jmx:
-    default-domain: product_process
+    default-domain: ${project.artifactId}_${project.version}
   cloud:
     config:
       uri: ${vcap.services.${PREFIX:}configserver.credentials.uri:http://user:password@localhost:8888}
