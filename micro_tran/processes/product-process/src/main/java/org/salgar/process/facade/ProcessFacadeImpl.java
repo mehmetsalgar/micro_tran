@@ -342,7 +342,7 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	}
 	
 	@Override
-	@HystrixCommand(fallbackMethod = "executeFallBackSaveProductV1", commandProperties = {
+	@HystrixCommand(fallbackMethod = "executeFallBackSaveProductV2", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
