@@ -36,7 +36,7 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	private RestTemplate restTemplate = new RestTemplate();
 
 	@Override
-	@HystrixCommand(fallbackMethod = "executeFallBackProductV1", commandProperties = {
+	@HystrixCommand(fallbackMethod = "executeFallBackProduct", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })

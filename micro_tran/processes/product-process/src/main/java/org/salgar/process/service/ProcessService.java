@@ -29,8 +29,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RestController
 @Transactional
-@TransactionalFanout( services = {"proxyProductServiceV1" , "proxyOrderServiceV1", 
-		"proxyCustomerServiceV1"})
+@TransactionalFanout( services = {"proxyProductService"})
 public class ProcessService {
 	private final static Log LOG = LogFactory.getLog(ProcessService.class);
 	private boolean routeRestProduct = false;
@@ -73,9 +72,9 @@ public class ProcessService {
 		return resut;
 	}
 	
-	@RequestMapping(path = "/product/v1/saveProduct", method = RequestMethod.POST)
+	@RequestMapping(path = "/product/saveProduct", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public org.salgar.product.api.model.Product saveProductV1(@RequestBody org.salgar.product.api..model.Product product)
+	public org.salgar.product.api.model.Product saveProduct(@RequestBody org.salgar.product.api.model.Product product)
 			throws JsonParseException, JsonMappingException, IOException {
 		if (routeRestProduct) {
 			return processFacade.executeFallBackSaveProduct(product);

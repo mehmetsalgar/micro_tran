@@ -17,11 +17,11 @@
 	<!--  jee:jndi-lookup id="mbeanServerConnection" jndi-name="jmx/rmi/RMIAdaptor"
 		expected-type="javax.management.MBeanServerConnection" /-->
 
-	<bean id="proxyProductServiceV2" class="org.springframework.jmx.access.MBeanProxyFactoryBean">
+	<bean id="proxyProductService" class="org.springframework.jmx.access.MBeanProxyFactoryBean">
 		<property name="objectName"
 			value="salgar:name=salgar-product-service-v2,type=org.salgar.product.v2.imp.ProductServiceImp,artifactId=salgar-product-service-v2" />
 		<property name="proxyInterface"
-			value="org.salgar.product.api.v2.ProductService" />
+			value="org.salgar.product.api.ProductService" />
 		<!--  property name="server" ref="mbeanServerConnection" /-->
 	</bean>
 </beans>

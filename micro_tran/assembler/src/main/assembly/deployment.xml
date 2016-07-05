@@ -155,16 +155,16 @@
 			<outputDirectory>standalone/deployments</outputDirectory>
 			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
 			<unpack>false</unpack>
-		</dependencySet>
+		</dependencySet-->
 		<dependencySet>
 			<includes>
 				<include>org.salgar:product-process</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
-			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+			<!-- outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping-->
 			<unpack>false</unpack>
-		</dependencySet-->
+		</dependencySet>
 		<dependencySet>
 			<includes>
 				<include>org.salgar:eureka</include>
