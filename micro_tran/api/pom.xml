@@ -5,7 +5,7 @@
   <parent>
 		<groupId>org.salgar</groupId>
 		<artifactId>micro_tran</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>${micro_tran.version}</version>
 	</parent>
 	
   <artifactId>api</artifactId>

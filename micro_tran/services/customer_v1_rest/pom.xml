@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.salgar</groupId>
 		<artifactId>services</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>${micro_tran.version}</version>
 	</parent>
 
 	<artifactId>customer_v1_rest</artifactId>

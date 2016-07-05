@@ -4,12 +4,13 @@
 
   <groupId>org.salgar</groupId>
   <artifactId>micro_tran</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>${micro_tran.version}</version>
   <packaging>pom</packaging>
 
   <name>micro_tran</name>
 
   <properties>
+	<micro_tran.version>2.0-SNAPSHOT</micro_tran.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<spring.version>4.2.6.RELEASE</spring.version>
 	<spring.boot.version>1.3.5.RELEASE</spring.boot.version>
