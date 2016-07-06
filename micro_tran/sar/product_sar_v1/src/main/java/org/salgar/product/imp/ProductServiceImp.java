@@ -1,8 +1,8 @@
-package org.salgar.product.v1.imp;
+package org.salgar.product.imp;
 
-import org.salgar.product.api.v1.ProductService;
-import org.salgar.product.api.v1.model.Product;
-import org.salgar.product.v1.dao.ProductRepository;
+import org.salgar.product.api.ProductService;
+import org.salgar.product.api.model.Product;
+import org.salgar.product.dao.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;

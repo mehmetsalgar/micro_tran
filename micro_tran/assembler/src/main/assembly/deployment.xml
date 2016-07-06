@@ -8,13 +8,13 @@
 	<dependencySets>
 		<dependencySet>
 			<includes>
-				<include>org.salgar:product_api_v1</include>
+				<include>org.salgar:product_api</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>modules/system/layers/base/org/salgar/product/api/1_0/main</outputDirectory>
 			<unpack>false</unpack>
 		</dependencySet>
-		<dependencySet>
+		<!-- dependencySet>
 			<includes>
 				<include>org.salgar:product_api_v2</include>
 			</includes>
@@ -53,16 +53,16 @@
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>modules/system/layers/base/org/salgar/customer/api/2_0/main</outputDirectory>
 			<unpack>false</unpack>
-		</dependencySet>
+		</dependencySet-->
 		<dependencySet>
 			<includes>
-				<include>org.salgar:product_sar_v1</include>
+				<include>org.salgar:product_sar</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
 			<unpack>false</unpack>
 		</dependencySet>
-		<dependencySet>
+		<!-- dependencySet>
 			<includes>
 				<include>org.salgar:product_sar_v2</include>
 			</includes>
@@ -101,17 +101,17 @@
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
 			<unpack>false</unpack>
-		</dependencySet>
+		</dependencySet-->
 		<dependencySet>
 			<includes>
-				<include>org.salgar:product_v1_rest</include>
+				<include>org.salgar:product_rest</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
-			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+			<!-- outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping-->
 			<unpack>false</unpack>
 		</dependencySet>
-		<dependencySet>
+		<!-- dependencySet>
 			<includes>
 				<include>org.salgar:product_v2_rest</include>
 			</includes>
@@ -164,7 +164,7 @@
 			<outputDirectory>standalone/deployments</outputDirectory>
 			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
 			<unpack>false</unpack>
-		</dependencySet>
+		</dependencySet-->
 		<dependencySet>
 			<includes>
 				<include>org.salgar:eureka</include>

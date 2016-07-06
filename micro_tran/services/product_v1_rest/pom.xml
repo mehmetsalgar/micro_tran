@@ -8,8 +8,8 @@
 		<artifactId>services</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>product_v1_rest</artifactId>
-	<name>product_v1_rest</name>
+	<artifactId>product_rest</artifactId>
+	<name>product_rest</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -58,7 +58,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>product_api_v1</artifactId>
+			<artifactId>product_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>

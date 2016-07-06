@@ -1,6 +1,7 @@
-package org.salgar.product.v1.imp;
-import org.salgar.product.api.v1.ProductService;
-import org.salgar.product.api.v1.model.Product;
+package org.salgar.product.imp;
+
+import org.salgar.product.api.ProductService;
+import org.salgar.product.api.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedOperationParameter;

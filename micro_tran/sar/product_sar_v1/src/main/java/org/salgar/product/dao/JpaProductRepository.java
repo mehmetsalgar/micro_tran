@@ -1,9 +1,9 @@
-package org.salgar.product.v1.dao;
+package org.salgar.product.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.salgar.product.api.v1.model.Product;
+import org.salgar.product.api.model.Product;
 import org.springframework.stereotype.Repository;
 
 @Repository
