@@ -77,10 +77,10 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	@Override
 	public org.salgar.product.api.v1.model.Product executeFallBackProductV1(int productId)
 			throws JsonParseException, JsonMappingException, IOException {
-		ServiceInstance instance = loadBalancerClient.choose("product_v1_rest");
+		ServiceInstance instance = loadBalancerClient.choose("product_rest__1.0-SNAPSHOT");
 
 		URI uri = instance.getUri();
-		String url = uri.toString() + "/product_v1_rest/product/" + productId;
+		String url = uri.toString() + "/product_rest_1.0-SNAPSHOT/product/" + productId;
 
 		ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 
@@ -328,10 +328,10 @@ public class ProcessFacadeImpl implements ProcessFacade {
 
 	@Override
 	public org.salgar.product.api.v1.model.Product executeFallBackSaveProductV1(org.salgar.product.api.v1.model.Product product) {
-		ServiceInstance instance = loadBalancerClient.choose("product_v1_rest");
+		ServiceInstance instance = loadBalancerClient.choose("product_rest_1.0-SNAPSHOT");
 
 		URI uri = instance.getUri();
-		String url = uri.toString() + "/product_v1_rest/saveProduct";
+		String url = uri.toString() + "/product_rest_1.0-SNAPSHOT/saveProduct";
 
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("product", product);
