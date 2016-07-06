@@ -54,3 +54,9 @@ http://localhost:8080/order_v2_rest/order/2
 http://localhost:8080/product-process/order/v2/2
 
 http://localhost:8765/product-process/order/v2/3
+
+http://localhost:8080/product-process-2.0-SNAPSHOT/product/2
+
+http://localhost:8080/product_rest-1.0-SNAPSHOT/product/2
+
+http://localhost:8080/product-process-1.0-SNAPSHOT/product/2

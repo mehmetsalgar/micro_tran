@@ -1,6 +1,6 @@
 spring:
   application:
-    name: product_process
+    name: product_process_${project.version}
   jmx:
     default-domain: product_process_${project.version}
   cloud:

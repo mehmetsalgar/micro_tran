@@ -19,7 +19,13 @@
 	</properties>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<!-- finalName>${project.artifactId}</finalName-->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -60,11 +66,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>product_api_v1</artifactId>
+			<artifactId>product_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+		<!--  dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>product_api_v2</artifactId>
 			<version>${project.version}</version>
@@ -93,7 +99,7 @@
 			<artifactId>customer_api_v2</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>eureka_patch</artifactId>
