@@ -54,3 +54,5 @@ http://localhost:8080/order_v2_rest/order/2
 http://localhost:8080/product-process/order/v2/2
 
 http://localhost:8765/product-process/order/v2/3
+
+curl -X PUT http://localhost:8761/eureka/apps/PRODUCT_PROCESS/LOTR.railnet.train:product_process:8080/status?value=UP
