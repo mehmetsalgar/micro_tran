@@ -37,16 +37,16 @@
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>modules/system/layers/base/org/salgar/order/api/2_0/main</outputDirectory>
 			<unpack>false</unpack>
-		</dependencySet>
+		</dependencySet-->
 		<dependencySet>
 			<includes>
-				<include>org.salgar:customer_api_v1</include>
+				<include>org.salgar:customer_api</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>modules/system/layers/base/org/salgar/customer/api/1_0/main</outputDirectory>
 			<unpack>false</unpack>
 		</dependencySet>
-		<dependencySet>
+		<!--dependencySet>
 			<includes>
 				<include>org.salgar:customer_api_v2</include>
 			</includes>
@@ -85,16 +85,16 @@
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
 			<unpack>false</unpack>
-		</dependencySet>
+		</dependencySet-->
 		<dependencySet>
 			<includes>
-				<include>org.salgar:customer_sar_v1</include>
+				<include>org.salgar:customer_sar</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
 			<unpack>false</unpack>
 		</dependencySet>
-		<dependencySet>
+		<!--dependencySet>
 			<includes>
 				<include>org.salgar:customer_sar_v2</include>
 			</includes>
@@ -137,17 +137,17 @@
 			<outputDirectory>standalone/deployments</outputDirectory>
 			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
 			<unpack>false</unpack>
-		</dependencySet>
+		</dependencySet-->
 		<dependencySet>
 			<includes>
-				<include>org.salgar:customer_v1_rest</include>
+				<include>org.salgar:customer_rest</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
 			<outputDirectory>standalone/deployments</outputDirectory>
-			<outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+			<!-- outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping-->
 			<unpack>false</unpack>
 		</dependencySet>
-		<dependencySet>
+		<!--dependencySet>
 			<includes>
 				<include>org.salgar:customer_v2_rest</include>
 			</includes>

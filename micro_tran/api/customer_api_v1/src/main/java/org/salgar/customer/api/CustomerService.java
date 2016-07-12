@@ -1,6 +1,6 @@
-package org.salgar.customer.api.v1;
+package org.salgar.customer.api;
 
-import org.salgar.customer.api.v1.model.Customer;
+import org.salgar.customer.api.model.Customer;
 import org.salgar.healthcheck.HealthCheck;
 
 public interface CustomerService extends HealthCheck {

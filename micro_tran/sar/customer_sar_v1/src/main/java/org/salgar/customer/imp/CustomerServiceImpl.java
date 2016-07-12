@@ -1,8 +1,8 @@
-package org.salgar.customer.v1.imp;
+package org.salgar.customer.imp;
 
-import org.salgar.customer.api.v1.CustomerService;
-import org.salgar.customer.api.v1.model.Customer;
-import org.salgar.customer.v1.dao.CustomerRepository;
+import org.salgar.customer.api.CustomerService;
+import org.salgar.customer.api.model.Customer;
+import org.salgar.customer.dao.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;

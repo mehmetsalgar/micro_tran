@@ -1,6 +1,6 @@
-package org.salgar.customer.v1.dao;
+package org.salgar.customer.dao;
 
-import org.salgar.customer.api.v1.model.Customer;
+import org.salgar.customer.api.model.Customer;
 
 public interface CustomerRepository {
 	Customer findById(Integer customerId);

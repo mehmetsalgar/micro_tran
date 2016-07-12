@@ -37,10 +37,10 @@
   
   <modules>
 	<module>product_api_v1</module>
-	<!--module>product_api_v2</module>
-    <module>order_api_v1</module>
+	<!--module>product_api_v2</module-->
     <module>customer_api_v1</module>
-    <module>customer_api_v2</module>
+    <!--module>customer_api_v2</module>
+	<module>order_api_v1</module>
     <module>order_api_v2</module-->
   </modules>
 

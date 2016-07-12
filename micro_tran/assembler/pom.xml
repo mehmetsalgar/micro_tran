@@ -61,13 +61,13 @@
 			<groupId>org.salgar</groupId>
 			<artifactId>order_api_v2</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_api_v1</artifactId>
+			<artifactId>customer_api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
+		<!--  dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>customer_api_v2</artifactId>
 			<version>${project.version}</version>
@@ -95,14 +95,14 @@
 			<artifactId>order_sar_v2</artifactId>
 			<version>${project.version}</version>
 			<type>sar</type>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_sar_v1</artifactId>
+			<artifactId>customer_sar</artifactId>
 			<version>${project.version}</version>
 			<type>sar</type>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>customer_sar_v2</artifactId>
 			<version>${project.version}</version>
@@ -131,14 +131,14 @@
 			<artifactId>order_v2_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_v1_rest</artifactId>
+			<artifactId>customer_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>customer_v2_rest</artifactId>
 			<version>${project.version}</version>

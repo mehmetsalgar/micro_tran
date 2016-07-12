@@ -21,7 +21,7 @@
 		<property name="objectName"
 			value="salgar:name=salgar-customer-service-v1,type=org.salgar.customer.v1.imp.CustomerServiceImp,artifactId=salgar-customer-service-v1" />
 		<property name="proxyInterface"
-			value="org.salgar.customer.api.v1.CustomerService" />
+			value="org.salgar.customer.api.CustomerService" />
 		<!--  property name="server" ref="mbeanServerConnection" /-->
 	</bean>
 </beans>

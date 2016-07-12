@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ImportResource(locations = {"classpath:/META-INF/spring/org/salgar/customer_v1_rest/applicationContext.xml"})
+@ImportResource(locations = {"classpath:/META-INF/spring/org/salgar/customer_rest/applicationContext.xml"})
 public class CustomerServiceRestApplication extends SpringBootServletInitializer {
 	
 	@Override
