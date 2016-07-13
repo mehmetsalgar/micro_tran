@@ -32,6 +32,7 @@ http://localhost:8765/product-process/order/v1/3
 http://localhost:8756/product-process/saveOrder/v1
 {"id":null,"products":null,"commitDate":987653434,"status":5,"customer": null}
 http://localhost:8756/product-process/saveOrderWithProduct/v1
+
 {"id":null,"products":[{"productId":2,"name":"Test"}],"commitDate":987653434,"status":5,"customer": null}
 http://localhost:8765/product-process/saveCustomer/v1
 {"id":null,"name":"Stark","firstName":"Sansa","birthDate":546645656}
@@ -60,3 +61,6 @@ http://localhost:8080/product-process-2.0-SNAPSHOT/product/2
 http://localhost:8080/product_rest-1.0-SNAPSHOT/product/2
 
 http://localhost:8080/product-process-1.0-SNAPSHOT/product/2
+
+http://localhost:8080/product-process-1.0-SNAPSHOT/customer/2
+http://localhost:8080/customer_rest-1.0-SNAPSHOT/customer/3

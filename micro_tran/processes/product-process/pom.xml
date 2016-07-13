@@ -87,14 +87,14 @@
 			<artifactId>order_api_v2</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_api_v1</artifactId>
+			<artifactId>customer_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>customer_api_v2</artifactId>
 			<version>${project.version}</version>
