@@ -8,15 +8,15 @@
 		<artifactId>services</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>order_v1_rest</artifactId>
-	<name>order_v1_rest</name>
+	<artifactId>order_rest</artifactId>
+	<name>order_rest</name>
 	<packaging>war</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<!-- finalName>${project.artifactId}</finalName-->
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -57,7 +57,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>order_api_v1</artifactId>
+			<artifactId>order_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>

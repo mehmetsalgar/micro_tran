@@ -1,4 +1,4 @@
-package org.salgar.order.api.v1.model;
+package org.salgar.order.api.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.salgar.customer.api.v1.model.Customer;
-import org.salgar.product.api.v1.model.Product;
+import org.salgar.customer.api.model.Customer;
+import org.salgar.product.api.model.Product;
 
 @Entity
 @Table(name = "ORDER_TA")

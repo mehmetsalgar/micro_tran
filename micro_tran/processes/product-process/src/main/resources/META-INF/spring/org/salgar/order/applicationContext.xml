@@ -12,7 +12,7 @@
 	
 	<context:component-scan base-package="org.salgar"/>
 	
-	<mvc:annotation-driven />
+	<mvc:annotation-driven/>
 	
 	<!--  jee:jndi-lookup id="mbeanServerConnection" jndi-name="jmx/rmi/RMIAdaptor"
 		expected-type="javax.management.MBeanServerConnection" /-->
@@ -21,7 +21,7 @@
 		<property name="objectName"
 			value="salgar:name=salgar-order-service-v1,type=org.salgar.order.v1.imp.OrderServiceImp,artifactId=salgar-order-service-v1" />
 		<property name="proxyInterface"
-			value="org.salgar.order.api.v1.OrderService" />
+			value="org.salgar.order.api.OrderServiceService" />
 		<!--  property name="server" ref="mbeanServerConnection" /-->
 	</bean>
 </beans>

@@ -1,9 +1,9 @@
-package org.salgar.order.v1.imp;
+package org.salgar.order.imp;
 
 import java.util.List;
 
-import org.salgar.order.api.v1.OrderService;
-import org.salgar.order.api.v1.model.Order;
+import org.salgar.order.api.OrderService;
+import org.salgar.order.api.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedOperationParameter;

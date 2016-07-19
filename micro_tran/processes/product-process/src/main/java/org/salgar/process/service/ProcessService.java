@@ -8,6 +8,7 @@ import javax.inject.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.salgar.annotation.TransactionalFanout;
+import org.salgar.process.context.order.OrderContext;
 import org.salgar.process.facade.ProcessFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
@@ -26,11 +27,12 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RestController
 @Transactional
-@TransactionalFanout( services = {"proxyProductService" })
+@TransactionalFanout( services = {"proxyProductService", "proxyCustomerService"})
 public class ProcessService {
 	private final static Log LOG = LogFactory.getLog(ProcessService.class);
 	private boolean routeRestProduct = false;
 	private boolean routeRestCustomer = false;
+	private boolean routeRestOrder = false;
 	
 	@Autowired(required = false)
 	@Named("proxyProductService")
@@ -39,6 +41,10 @@ public class ProcessService {
 	@Autowired(required = false)
 	@Named("proxyCustomerService")
 	private org.salgar.customer.api.CustomerService customerService;
+	
+	@Autowired(required = false)
+	@Named("proxyOrderService")
+	private org.salgar.order.api.OrderService orderService;
 	
 	@Autowired
 	private ProcessFacade processFacade;
@@ -70,6 +76,20 @@ public class ProcessService {
 			} catch (Throwable t) {
 				LOG.error(t.getMessage(), t);
 				routeRestCustomer = true;
+			}
+		}
+		
+		if(orderService == null) {
+			routeRestOrder = true;
+		} else {
+			try {
+				String healthCheck = orderService.giveAlive();
+				if(healthCheck == null && "".equals(healthCheck)) {
+					routeRestOrder = true;
+				}
+			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
+				routeRestOrder = true;
 			}
 		}
 	}
@@ -122,6 +142,32 @@ public class ProcessService {
 		}
 
 		org.salgar.customer.api.model.Customer resut = processFacade.saveCustomer(customer);
+
+		return resut;
+	}
+	
+	@RequestMapping("/order/{orderId}")
+	@Transactional(readOnly = true)
+	public org.salgar.order.api.model.Order getOrder(@PathVariable int orderId)
+			throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestCustomer) {
+			return processFacade.executeFallBackOrder(orderId);
+		}
+
+		org.salgar.order.api.model.Order resut = processFacade.giveOrder(orderId);
+
+		return resut;
+	}
+	
+	@RequestMapping(path = "/customer/saveCustomer", method = RequestMethod.POST)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public org.salgar.order.api.model.Order saveOrder(@RequestBody OrderContext orderContext)
+			throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestOrder) {
+			return processFacade.executeFallBackSaveOrder(order);
+		}
+
+		org.salgar.order.api.model.Order resut = processFacade.saveOrder(order);
 
 		return resut;
 	}

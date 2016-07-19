@@ -1,6 +1,6 @@
-package org.salgar.order.v1.dao;
+package org.salgar.order.dao;
 
-import org.salgar.order.api.v1.model.Order;
+import org.salgar.order.api.model.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

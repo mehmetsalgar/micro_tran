@@ -8,8 +8,8 @@
 		<artifactId>sar</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>order_sar_v1</artifactId>
-	<name>order_sar_v1</name>
+	<artifactId>order_sar</artifactId>
+	<name>order_sar</name>
 	<packaging>jboss-sar</packaging>
 
 	<properties>
@@ -50,12 +50,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>product_api_v1</artifactId>
+			<artifactId>product_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<artifactId>order_api_v1</artifactId>
+			<artifactId>order_api</artifactId>
 			<groupId>org.salgar</groupId>
 			<version>${project.version}</version>
 			<scope>provided</scope>

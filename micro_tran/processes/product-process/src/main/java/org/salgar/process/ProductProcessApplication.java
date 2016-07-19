@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 @EnableCircuitBreaker
 @ImportResource(locations = {"classpath:/META-INF/spring/org/salgar/product/applicationContext.xml",
 		"classpath:/META-INF/spring/org/salgar/customer/applicationContext.xml",
+		"classpath:/META-INF/spring/org/salgar/order/applicationContext.xml",
 		"classpath:/META-INF/spring/org/salgar/dao/applicationContext-dao.xml",
 		"classpath:/META-INF/spring/org/salgar/aop/applicationContext-aop.xml"})
 public class ProductProcessApplication extends SpringBootServletInitializer {
@@ -24,5 +25,4 @@ public class ProductProcessApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(ProductProcessApplication.class, args);
 	}
-
 }

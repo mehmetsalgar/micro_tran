@@ -64,3 +64,5 @@ http://localhost:8080/product-process-1.0-SNAPSHOT/product/2
 
 http://localhost:8080/product-process-1.0-SNAPSHOT/customer/2
 http://localhost:8080/customer_rest-1.0-SNAPSHOT/customer/3
+
+http://localhost:8080/order_rest-1.0-SNAPSHOT/order/3

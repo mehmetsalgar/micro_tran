@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.inject.Named;
 
-import org.salgar.order.api.v1.OrderService;
-import org.salgar.order.api.v1.model.Order;
+import org.salgar.order.api.OrderService;
+import org.salgar.order.api.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

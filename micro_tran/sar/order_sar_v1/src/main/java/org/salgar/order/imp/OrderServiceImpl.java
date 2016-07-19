@@ -1,10 +1,10 @@
-package org.salgar.order.v1.imp;
+package org.salgar.order.imp;
 
 import java.util.List;
 
-import org.salgar.order.api.v1.OrderService;
-import org.salgar.order.api.v1.model.Order;
-import org.salgar.order.v1.dao.OrderRepository;
+import org.salgar.order.api.OrderService;
+import org.salgar.order.api.model.Order;
+import org.salgar.order.dao.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
