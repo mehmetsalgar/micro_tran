@@ -21,7 +21,7 @@
 		<property name="objectName"
 			value="salgar:name=salgar-order-service-v1,type=org.salgar.order.v1.imp.OrderServiceImp,artifactId=salgar-order-service-v1" />
 		<property name="proxyInterface"
-			value="org.salgar.order.api.OrderServiceService" />
+			value="org.salgar.order.api.OrderService" />
 		<!--  property name="server" ref="mbeanServerConnection" /-->
 	</bean>
 </beans>

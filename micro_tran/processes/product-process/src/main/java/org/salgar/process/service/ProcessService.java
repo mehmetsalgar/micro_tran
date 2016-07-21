@@ -150,7 +150,7 @@ public class ProcessService {
 	@Transactional(readOnly = true)
 	public org.salgar.order.api.model.Order getOrder(@PathVariable int orderId)
 			throws JsonParseException, JsonMappingException, IOException {
-		if (routeRestCustomer) {
+		if (routeRestOrder) {
 			return processFacade.executeFallBackOrder(orderId);
 		}
 
@@ -159,9 +159,9 @@ public class ProcessService {
 		return resut;
 	}
 	
-	@RequestMapping(path = "/customer/saveCustomer", method = RequestMethod.POST)
+	@RequestMapping(path = "/order/saveOrder", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public org.salgar.order.api.model.Order saveOrder(@RequestBody OrderContext orderContext)
+	public org.salgar.order.api.model.Order saveOrder(@RequestBody org.salgar.order.api.model.Order order)
 			throws JsonParseException, JsonMappingException, IOException {
 		if (routeRestOrder) {
 			return processFacade.executeFallBackSaveOrder(order);
