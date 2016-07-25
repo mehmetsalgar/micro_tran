@@ -32,7 +32,6 @@ http://localhost:8765/product-process/order/v1/3
 http://localhost:8756/product-process/saveOrder/v1
 {"id":null,"products":null,"commitDate":987653434,"status":5,"customer": null}
 http://localhost:8756/product-process/saveOrderWithProduct/v1
-
 {"id":null,"products":[{"productId":2,"name":"Test"}],"commitDate":987653434,"status":5,"customer": null}
 http://localhost:8765/product-process/saveCustomer/v1
 {"id":null,"name":"Stark","firstName":"Sansa","birthDate":546645656}
@@ -56,13 +55,13 @@ http://localhost:8080/product-process/order/v2/2
 
 http://localhost:8765/product-process/order/v2/3
 
-http://localhost:8080/product-process-2.0-SNAPSHOT/product/2
+curl -X PUT http://localhost:8761/eureka/apps/PRODUCT_PROCESS/LOTR.railnet.train:product_process:8080/status?value=UP
 
-http://localhost:8080/product_rest-1.0-SNAPSHOT/product/2
 
-http://localhost:8080/product-process-1.0-SNAPSHOT/product/2
+http://localhost:8765/product-process-1.0-SNAPSHOT/saveOrderWProductWCustomer
 
-http://localhost:8080/product-process-1.0-SNAPSHOT/customer/2
-http://localhost:8080/customer_rest-1.0-SNAPSHOT/customer/3
-
-http://localhost:8080/order_rest-1.0-SNAPSHOT/order/3
+{
+ "order" :{"id":null,"products":null,"commitDate":345345345,"status":5,"customer": null},
+  "product" : {"productId":1,"name":"Test"},
+  "customer" : {"id":1,"name":"Doe","firstName":"John","birthDate":2432423}
+}
