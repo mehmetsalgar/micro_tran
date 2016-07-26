@@ -1,8 +1,6 @@
 package org.salgar.process.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -33,11 +30,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class ProcessService {
 	private final static Log LOG = LogFactory.getLog(ProcessService.class);
 	private boolean routeRestProduct = false;
+	private boolean routeRestCustomer = false;
 
-	
 	@Autowired(required = false)
 	@Named("proxyProductService")
 	private org.salgar.product.api.ProductService productService;
+	
+	@Autowired(required = false)
+	@Named("proxyCustomerService")
+	private org.salgar.customer.api.CustomerService customerService;
 
 	@Autowired
 	private ProcessFacade processFacade;
@@ -57,11 +58,25 @@ public class ProcessService {
 				routeRestProduct = true;
 			}
 		}
+		
+		if(customerService == null) {
+			routeRestCustomer = true;
+		} else {
+			try {
+				String healthCheck = customerService.giveAlive();
+				if(healthCheck == null && "".equals(healthCheck)) {
+					routeRestCustomer = true;
+				}
+			} catch (Throwable t) {
+				LOG.error(t.getMessage(), t);
+				routeRestCustomer = true;
+			}
+		}
 	}
 
 	@RequestMapping("/product/{productId}")
 	@Transactional(readOnly = true)
-	public org.salgar.product.api.model.Product getProductV1(@PathVariable int productId)
+	public org.salgar.product.api.model.Product getProduct(@PathVariable int productId)
 			throws JsonParseException, JsonMappingException, IOException {
 		if (routeRestProduct) {
 			return processFacade.executeFallBackProduct(productId);
@@ -81,6 +96,32 @@ public class ProcessService {
 		}
 
 		org.salgar.product.api.model.Product resut = processFacade.saveProduct(product);
+
+		return resut;
+	}
+	
+	@RequestMapping("/customer/{customerId}")
+	@Transactional(readOnly = true)
+	public org.salgar.customer.api.model.Customer getCustomer(@PathVariable int customerId)
+			throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestCustomer) {
+			return processFacade.executeFallBackCustomer(customerId);
+		}
+
+		org.salgar.customer.api.model.Customer resut = processFacade.giveCustomer(customerId);
+
+		return resut;
+	}
+	
+	@RequestMapping(path = "/customer/saveCustomer", method = RequestMethod.POST)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public org.salgar.customer.api.model.Customer saveCustomer(@RequestBody org.salgar.customer.api.model.Customer customer)
+			throws JsonParseException, JsonMappingException, IOException {
+		if (routeRestCustomer) {
+			return processFacade.executeFallBackSaveCustomer(customer);
+		}
+
+		org.salgar.customer.api.model.Customer resut = processFacade.saveCustomer(customer);
 
 		return resut;
 	}
