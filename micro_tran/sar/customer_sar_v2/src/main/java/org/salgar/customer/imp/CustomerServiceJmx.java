@@ -1,7 +1,7 @@
-package org.salgar.customer.v2.imp;
+package org.salgar.customer.imp;
 
-import org.salgar.customer.api.v2.CustomerService;
-import org.salgar.customer.api.v2.model.Customer;
+import org.salgar.customer.api.CustomerService;
+import org.salgar.customer.api.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedOperationParameter;

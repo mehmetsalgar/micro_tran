@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 public class CustomerHealthCheckerFactory {
 	@Autowired
 	@Named("proxyCustomerService")
-	org.salgar.customer.api.v2.CustomerService customerService;
+	org.salgar.customer.api.CustomerService customerService;
 
 	@Bean
-	public RestHealthIndicator<org.salgar.customer.api.v2.CustomerService> getHealtIndicator() {
-		return new RestHealthIndicator<org.salgar.customer.api.v2.CustomerService>(customerService);
+	public RestHealthIndicator<org.salgar.customer.api.CustomerService> getHealtIndicator() {
+		return new RestHealthIndicator<org.salgar.customer.api.CustomerService>(customerService);
 	}
 }

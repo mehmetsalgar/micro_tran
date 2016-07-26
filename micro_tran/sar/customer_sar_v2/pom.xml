@@ -8,9 +8,9 @@
 		<artifactId>sar</artifactId>
 		<version>${micro_tran.version}</version>
 	</parent>
-	<artifactId>customer_sar_v2</artifactId>
+	<artifactId>customer_sar</artifactId>
 	<packaging>jboss-sar</packaging>
-	<name>customer_sar_v2</name>
+	<name>customer_sar</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -48,7 +48,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_api_v2</artifactId>
+			<artifactId>customer_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>

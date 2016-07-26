@@ -2,8 +2,8 @@ package org.salgar.service.rest;
 
 import javax.inject.Named;
 
-import org.salgar.customer.api.v2.CustomerService;
-import org.salgar.customer.api.v2.model.Customer;
+import org.salgar.customer.api.CustomerService;
+import org.salgar.customer.api.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;

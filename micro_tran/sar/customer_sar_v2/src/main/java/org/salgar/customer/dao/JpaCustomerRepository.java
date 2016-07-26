@@ -1,9 +1,9 @@
-package org.salgar.customer.v2.dao;
+package org.salgar.customer.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.salgar.customer.api.v2.model.Customer;
+import org.salgar.customer.api.model.Customer;
 import org.springframework.stereotype.Repository;
 
 @Repository

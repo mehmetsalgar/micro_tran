@@ -8,8 +8,8 @@
 		<artifactId>services</artifactId>
 		<version>${micro_tran.version}</version>
 	</parent>
-	<artifactId>customer_v2_rest</artifactId>
-	<name>customer_v2_rest</name>
+	<artifactId>customer_rest</artifactId>
+	<name>customer_rest</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -59,7 +59,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_api_v2</artifactId>
+			<artifactId>customer_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>

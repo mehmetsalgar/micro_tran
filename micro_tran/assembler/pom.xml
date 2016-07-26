@@ -66,13 +66,13 @@
 			<groupId>org.salgar</groupId>
 			<artifactId>customer_api_v1</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_api_v2</artifactId>
+			<artifactId>customer_api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>product_sar_v1</artifactId>
 			<version>${project.version}</version>
@@ -101,14 +101,14 @@
 			<artifactId>customer_sar_v1</artifactId>
 			<version>${project.version}</version>
 			<type>sar</type>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_sar_v2</artifactId>
+			<artifactId>customer_sar</artifactId>
 			<version>${project.version}</version>
 			<type>sar</type>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>product_v1_rest</artifactId>
 			<version>${project.version}</version>
@@ -137,13 +137,13 @@
 			<artifactId>customer_v1_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>customer_v2_rest</artifactId>
+			<artifactId>customer_rest</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-		</dependency-->
+		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>product-process</artifactId>
@@ -153,12 +153,12 @@
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>eureka</artifactId>
-			<version>${project.version}</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>zuul</artifactId>
-			<version>${project.version}</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
