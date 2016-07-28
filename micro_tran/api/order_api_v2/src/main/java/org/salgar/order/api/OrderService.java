@@ -1,7 +1,7 @@
-package org.salgar.order.api.v2;
+package org.salgar.order.api;
 
 import org.salgar.healthcheck.HealthCheck;
-import org.salgar.order.api.v2.model.Order;
+import org.salgar.order.api.model.Order;
 
 public interface OrderService extends HealthCheck {
 	Order giveOrder(Integer orderId);

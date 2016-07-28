@@ -41,7 +41,7 @@
     <!--module>order_sar_v1</module>
     <module>customer_sar_v1</module-->
     <module>customer_sar_v2</module>
-    <!--module>order_sar_v2</module-->
+    <module>order_sar_v2</module>
   </modules>
 
   <dependencies>

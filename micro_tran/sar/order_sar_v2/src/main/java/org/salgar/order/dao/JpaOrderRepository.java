@@ -1,9 +1,9 @@
-package org.salgar.order.v2.dao;
+package org.salgar.order.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.salgar.order.api.v2.model.Order;
+import org.salgar.order.api.model.Order;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -8,8 +8,8 @@
 		<artifactId>services</artifactId>
 		<version>${micro_tran.version}</version>
 	</parent>
-	<artifactId>order_v2_rest</artifactId>
-	<name>order_v2_rest</name>
+	<artifactId>order_rest</artifactId>
+	<name>order_rest</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -17,7 +17,7 @@
 	</properties>
 
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<!--  finalName>${project.artifactId}</finalName-->
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -58,7 +58,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.salgar</groupId>
-			<artifactId>order_api_v2</artifactId>
+			<artifactId>order_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>

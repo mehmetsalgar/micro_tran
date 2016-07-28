@@ -1,6 +1,6 @@
-package org.salgar.order.v2.dao;
+package org.salgar.order.dao;
 
-import org.salgar.order.api.v2.model.Order;
+import org.salgar.order.api.model.Order;
 
 public interface OrderRepository {
 	Order findOrderByd(Integer orderId);
