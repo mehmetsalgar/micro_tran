@@ -4,6 +4,7 @@
         <dependencies>
             <module name="org.salgar.product.api.2_0" />
             <module name="org.salgar.customer.api.2_0" />
+            <module name="org.salgar.order.api.2_0" />
         </dependencies>
         <exclusions>
         </exclusions>
