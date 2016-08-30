@@ -12,8 +12,14 @@ endpoints:
 zuul:
   ignoredServices: "*"
   routes:
-    product_process:
-      path: /product-process/**
+    product_process-1_0:
+      path: /product-process-1.0-SNAPSHOT/**
+      serviceId: product-process_1.0-SNAPSHOT
+      stripPrefix: false
+      
+    product_process-2_0:
+      path: /product-process-2.0-SNAPSHOT/**
+      serviceId: product-process_2.0-SNAPSHOT
       stripPrefix: false
 
 server:
