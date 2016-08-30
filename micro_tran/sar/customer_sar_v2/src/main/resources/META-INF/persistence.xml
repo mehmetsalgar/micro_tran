@@ -5,7 +5,7 @@
 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="CUSTOMER_V2_SAR">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>org.salgar.customer.api.v2.model.Customer</class>
+		<class>org.salgar.customer.api.model.Customer</class>
 
 		<properties>
 			<property name="hibernate.bytecode.use_reflection_optimizer"

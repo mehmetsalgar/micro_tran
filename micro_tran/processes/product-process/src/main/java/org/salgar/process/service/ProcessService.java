@@ -46,7 +46,7 @@ public class ProcessService {
 	private org.salgar.customer.api.CustomerService customerService;
 	
 	@Autowired(required = false)
-	@Named("proxOrderService")
+	@Named("proxyOrderService")
 	private org.salgar.order.api.OrderService orderService;
 
 	@Autowired
@@ -177,7 +177,7 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/saveOrderWProductWCustomer", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public void saveOrderWithProductWithCustomer(@RequestBody OrderContext orderContext)
+	public org.salgar.order.api.model.Order saveOrderWithProductWithCustomer(@RequestBody OrderContext orderContext)
 			throws JsonParseException, JsonMappingException, IOException {
 		try {
 			org.salgar.customer.api.model.Customer customerInternal = null;
@@ -200,9 +200,9 @@ public class ProcessService {
 			orderContext.getOrder().setCustomer(customerInternal);
 
 			if (routeRestOrder) {
-				processFacade.executeFallBackSaveOrder(orderContext.getOrder());
+				return processFacade.executeFallBackSaveOrder(orderContext.getOrder());
 			} else {
-				processFacade.saveOrder(orderContext.getOrder());
+				return processFacade.saveOrder(orderContext.getOrder());
 			}
 		} catch (Throwable t) {
 			LOG.error(t.getMessage(), t);
@@ -212,7 +212,7 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/saveOrderWithProduct", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public void saveOrderWithAnExistingProduct(@RequestBody org.salgar.order.api.model.Order order,
+	public org.salgar.order.api.model.Order saveOrderWithAnExistingProduct(@RequestBody org.salgar.order.api.model.Order order,
 			@RequestParam("productId") Integer productId) throws JsonParseException, JsonMappingException, IOException {
 		try {
 			org.salgar.product.api.model.Product product;
@@ -224,9 +224,9 @@ public class ProcessService {
 
 			order.getProducts().add(product);
 			if (routeRestOrder) {
-				processFacade.executeFallBackSaveOrder(order);
+				return processFacade.executeFallBackSaveOrder(order);
 			} else {
-				processFacade.saveOrder(order);
+				return processFacade.saveOrder(order);
 			}
 		} catch (Throwable t) {
 			LOG.error(t.getMessage(), t);

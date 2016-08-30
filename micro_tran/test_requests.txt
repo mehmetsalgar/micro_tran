@@ -51,6 +51,5 @@ http://localhost:8765/product-process/saveOrderWProductWCustomerTransactionProof
 
 http://localhost:8080/order_v2_rest/order/2
 
-http://localhost:8080/product-process/order/v2/2
 
-http://localhost:8765/product-process/order/v2/3
+http://localhost:8765/product-process-2.0-SNAPSHOT/order/1

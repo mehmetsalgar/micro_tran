@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -208,7 +211,11 @@ public class ProcessFacadeImpl implements ProcessFacade {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("order", order);
 		
-		ResponseEntity<org.salgar.order.api.model.Order> result = restTemplate.postForEntity(url, null, org.salgar.order.api.model.Order.class, params);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Order> entity = new HttpEntity<Order>(order, headers);
+		
+		ResponseEntity<org.salgar.order.api.model.Order> result = restTemplate.postForEntity(url, entity, org.salgar.order.api.model.Order.class);
 		
 		return result.getBody();
 	}
