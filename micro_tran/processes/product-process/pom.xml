@@ -64,36 +64,18 @@
 			<artifactId>annotation-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		<!-- dependency>
-			<groupId>org.salgar</groupId>
-			<artifactId>product_api_v1</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>product_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- dependency>
-			<groupId>org.salgar</groupId>
-			<artifactId>order_api_v1</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>order_api</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- dependency>
-			<groupId>org.salgar</groupId>
-			<artifactId>customer_api_v1</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
-		</dependency-->
 		<dependency>
 			<groupId>org.salgar</groupId>
 			<artifactId>customer_api</artifactId>
