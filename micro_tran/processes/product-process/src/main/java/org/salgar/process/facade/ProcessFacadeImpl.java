@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.inject.Named;
 
+import org.salgar.order.api.model.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	@Named("proxyCustomerService")
 	private org.salgar.customer.api.CustomerService customerService;
 
+	@Autowired(required = false)
+	@Named("proxyOrderService")
+	private org.salgar.order.api.OrderService orderService;
+	
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 
@@ -122,7 +127,7 @@ public class ProcessFacadeImpl implements ProcessFacade {
 		ServiceInstance instance = loadBalancerClient.choose("customer_rest_2.0-SNAPSHOT");
 
 		URI uri = instance.getUri();
-		String url = uri.toString() + "/customer_rest-2.0-SNAPSHOT/product/" + customerId;
+		String url = uri.toString() + "/customer_rest-2.0-SNAPSHOT/customer/" + customerId;
 
 		ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
 
@@ -153,6 +158,57 @@ public class ProcessFacadeImpl implements ProcessFacade {
 		params.put("customer", customer);
 		
 		ResponseEntity<org.salgar.customer.api.model.Customer> result = restTemplate.postForEntity(url, null, org.salgar.customer.api.model.Customer.class, params);
+		
+		return result.getBody();
+	}
+	
+	
+	@Override
+	@HystrixCommand(fallbackMethod = "executeFallBackOrder", commandProperties = {
+			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
+			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
+			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
+
+	public Order giveOrder(int orderId) throws JsonParseException, JsonMappingException, IOException {
+		return orderService.giveOrder(orderId);
+	}
+	
+	@Override
+	public Order executeFallBackOrder(int orderId) throws JsonParseException, JsonMappingException, IOException {
+		ServiceInstance instance = loadBalancerClient.choose("order_rest_2.0-SNAPSHOT");
+
+		URI uri = instance.getUri();
+		String url = uri.toString() + "/order_rest-2.0-SNAPSHOT/order/" + orderId;
+
+		ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);
+
+		ObjectMapper mapper = new ObjectMapper();
+		org.salgar.order.api.model.Order order = mapper.readValue(result.getBody(),
+				org.salgar.order.api.model.Order.class);
+
+		return order;
+	}
+	
+	@Override
+	@HystrixCommand(fallbackMethod = "executeFallBackSaveOrder", commandProperties = {
+			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
+			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
+			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
+	public org.salgar.order.api.model.Order saveOrder(org.salgar.order.api.model.Order order) throws JsonParseException, JsonMappingException, IOException {
+		return orderService.saveOrder(order);
+	}
+
+	@Override
+	public org.salgar.order.api.model.Order executeFallBackSaveOrder(org.salgar.order.api.model.Order order) {
+		ServiceInstance instance = loadBalancerClient.choose("order_rest_2.0-SNAPSHOT");
+
+		URI uri = instance.getUri();
+		String url = uri.toString() + "/order_rest-2.0-SNAPSHOT/saveOrder";
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("order", order);
+		
+		ResponseEntity<org.salgar.order.api.model.Order> result = restTemplate.postForEntity(url, null, org.salgar.order.api.model.Order.class, params);
 		
 		return result.getBody();
 	}
