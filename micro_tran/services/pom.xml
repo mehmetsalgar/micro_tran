@@ -37,11 +37,8 @@
   
   <modules>
     <module>product_v1_rest</module>
-	<!--module>product_v2_rest</module-->
     <module>customer_v1_rest</module>
-    <!--module>customer_v2_rest</module-->
 	<module>order_v1_rest</module>
-    <!--module>order_v2_rest</module-->
   </modules>
 
   <dependencies>

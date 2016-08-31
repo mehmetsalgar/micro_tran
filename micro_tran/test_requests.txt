@@ -65,3 +65,5 @@ http://localhost:8765/product-process-1.0-SNAPSHOT/saveOrderWProductWCustomer
   "product" : {"productId":1,"name":"Test"},
   "customer" : {"id":1,"name":"Doe","firstName":"John","birthDate":2432423}
 }
+
+http://localhost:8765/product-process-1.0-SNAPSHOT/order/1
