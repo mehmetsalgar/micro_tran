@@ -10,6 +10,7 @@ import javax.inject.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.salgar.annotation.TransactionalFanout;
+import org.salgar.annotation.TransactionalOrchestration;
 import org.salgar.process.context.order.OrderContext;
 import org.salgar.process.facade.ProcessFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,6 +179,7 @@ public class ProcessService {
 
 	@RequestMapping(path = "/saveOrderWProductWCustomer", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	@TransactionalOrchestration
 	public void saveOrderWithProductWithCustomer(@RequestBody OrderContext orderContext)
 			throws JsonParseException, JsonMappingException, IOException {
 		try {
