@@ -199,8 +199,8 @@ public class ProcessFacadeImpl implements ProcessFacade {
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
 	public Order saveOrder(@RequestBody Order order) throws JsonParseException, JsonMappingException, IOException {
-		throw new RuntimeException("fake exception!!!");
-		//return orderService.saveOrder(order);
+		//throw new RuntimeException("fake exception!!!");
+		return orderService.saveOrder(order);
 	}
 
 	@Override
