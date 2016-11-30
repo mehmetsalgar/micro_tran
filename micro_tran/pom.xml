@@ -47,6 +47,7 @@
 	<module>sar-utility</module>
 	<module>healthcheck</module>
 	<module>eureka_patch</module>
+	<module>hystrix_patch</module>
 	<module>annotation</module>
 	<module>api</module>
     <module>sar</module>

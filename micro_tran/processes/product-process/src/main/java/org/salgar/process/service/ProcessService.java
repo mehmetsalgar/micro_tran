@@ -10,6 +10,7 @@ import javax.inject.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.salgar.annotation.TransactionalFanout;
+import org.salgar.annotation.TransactionalOrchestration;
 import org.salgar.process.facade.ProcessFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
@@ -242,6 +243,7 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/saveOrderWithProduct/v1", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	@TransactionalOrchestration
 	public void saveOrderWithAnExistingProduct(@RequestBody org.salgar.order.api.v1.model.Order order, @RequestParam("productId") Integer productId) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.product.api.v1.model.Product product;
 		if (routeRestProductV1) {
@@ -295,6 +297,7 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/saveOrderWProductWCustomer/v1", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	@TransactionalOrchestration
 	public void saveOrderV1WithProductWithCustomer(@RequestBody org.salgar.process.context.v1.OrderContext orderContext) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.customer.api.v1.model.Customer customerInternal = null;
 		
@@ -324,6 +327,7 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/saveOrderWProductWCustomer/v2", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	@TransactionalOrchestration
 	public void saveOrderV2WithProductWithCustomer(@RequestBody org.salgar.process.context.v2.OrderContext orderContext) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.customer.api.v2.model.Customer customerInternal = null;
 		
@@ -353,6 +357,7 @@ public class ProcessService {
 	
 	@RequestMapping(path = "/saveOrderWProductWCustomerTransactionProof/v1", method = RequestMethod.POST)
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	@TransactionalOrchestration
 	public void saveOrderWithProductWithCustomerTransactionProof(@RequestBody org.salgar.process.context.v1.OrderContext orderContext) throws JsonParseException, JsonMappingException, IOException {
 		org.salgar.customer.api.v1.model.Customer customerInternal = null;
 		

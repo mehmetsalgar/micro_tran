@@ -22,6 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
+import org.salgar.hystrix.transaction.annotation.TransactionalHystrixCommand;
+
 @Component
 public class ProcessFacadeImpl implements ProcessFacade {
 	private static final Logger LOG = LoggerFactory.getLogger(ProcessFacadeImpl.class);
@@ -183,7 +185,7 @@ public class ProcessFacadeImpl implements ProcessFacade {
 
 
 	@Override
-	@HystrixCommand(fallbackMethod = "executeFallBackSaveOrderV1", commandProperties = {
+	@TransactionalHystrixCommand(fallbackMethod = "executeFallBackSaveOrderV1", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
@@ -212,7 +214,7 @@ public class ProcessFacadeImpl implements ProcessFacade {
 	}
 	
 	@Override
-	@HystrixCommand(fallbackMethod = "executeFallBackSaveOrderV2", commandProperties = {
+	@TransactionalHystrixCommand(fallbackMethod = "executeFallBackSaveOrderV2", commandProperties = {
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
 			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1"),
 			@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000") })
