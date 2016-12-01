@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
         
-        <jee:jndi-lookup id="datasource" jndi-name="java:jboss/datasources/microMySqlDS" />
+        <jee:jndi-lookup id="datasource" jndi-name="java:jboss/datasources/microDS" />
         
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         	<property name="jtaDataSource" ref="datasource" />

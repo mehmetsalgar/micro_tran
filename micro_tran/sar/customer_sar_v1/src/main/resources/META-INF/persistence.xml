@@ -10,13 +10,13 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 		<properties>
 			<property name="hibernate.bytecode.use_reflection_optimizer"
 				value="false" />
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
 			<property name="hibernate.connection.password" value="${org.salgar.ds.pass}" />
 			<!-- property name="hibernate.connection.url"
 				value="jdbc:h2:data/micro" /-->
-			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.username" value="sa" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform"/>
 		</properties>
 	</persistence-unit>

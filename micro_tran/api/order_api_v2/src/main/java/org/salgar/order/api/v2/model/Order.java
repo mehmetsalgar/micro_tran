@@ -22,7 +22,7 @@ import org.salgar.product.api.v2.model.Product;
 @Table(name = "ORDER_TA")
 public class Order {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "ORDER_PRODUCT_TA", joinColumns = @JoinColumn(name = "ORDERID"), inverseJoinColumns = @JoinColumn(name = "PRODUCTID"))
