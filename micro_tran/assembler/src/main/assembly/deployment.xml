@@ -8,6 +8,14 @@
 	<dependencySets>
 		<dependencySet>
 			<includes>
+				<include>org.salgar:health-check-api</include>
+			</includes>
+			<useTransitiveDependencies>false</useTransitiveDependencies>
+			<outputDirectory>modules/system/layers/base/org/salgar/healthcheck/api/main</outputDirectory>
+			<unpack>false</unpack>
+		</dependencySet>
+		<dependencySet>
+			<includes>
 				<include>org.salgar:product_api_v1</include>
 			</includes>
 			<useTransitiveDependencies>false</useTransitiveDependencies>
