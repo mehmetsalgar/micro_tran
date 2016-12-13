@@ -1,3 +1,10 @@
+http://localhost:8080/product-process/saveOrder/v1
+
+{"id":null,"name":"Snow","firstName":"John","birthDate":986756767}
+
+http://localhost:8765/product-process/order/v1/1
+
+
 {
   "order" :{"id":null,"products":null,"commitDate":345345345,"status":5,"customer": null},
   "product" : {"productId":null,"name":"Test"},
@@ -16,9 +23,6 @@
 http://localhost:8080/product-process/saveOrderWProductWCustomer/v1
 
 {"id":null,"products":null,"commitDate":345345345,"status":5,"customer": null}
-http://localhost:8080/product-process/saveOrder/v1
-
-{"id":null,"name":"Snow","firstName":"John","birthDate":986756767}
 
 http://localhost:8765/product-process/saveCustomer/v1
 
